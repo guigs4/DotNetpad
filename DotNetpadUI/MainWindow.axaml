@@ -4,6 +4,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="DotNetpadUI.MainWindow"
-        Title="DotNetpadUI">
-    Welcome to Avalonia!
+        Title=".Netpad"
+		BorderThickness=".1" >
+    <Grid ShowGridLines="True" Margin="0">
+        <Grid.RowDefinitions>
+			<RowDefinition Height="Auto"></RowDefinition>
+			<RowDefinition Height="*"></RowDefinition>
+			<RowDefinition Height="10"></RowDefinition>
+		</Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+		<Grid Grid.Row="0" ColumnDefinitions="*,auto,auto,auto">
+			<TextBlock Grid.Column="0">Title</TextBlock>
+			<Button Grid.Column="1">x</Button>
+			<Button Grid.Column="2">x</Button>
+			<Button Grid.Column="3">x</Button>
+		</Grid>
+		<TabControl Grid.Row="1" Margin="0">
+			<TabItem Header="Current File" Margin="0">
+				<TextBox AcceptsReturn="True" BorderThickness="0"></TextBox>
+			</TabItem>
+		</TabControl>
+		
+    </Grid>
 </Window>

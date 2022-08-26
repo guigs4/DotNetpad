@@ -6,23 +6,25 @@
         x:Class="DotNetpadUI.MainWindow"
         Title=".Netpad"
 		BorderThickness=".1" >
+	<Window.Styles>
+		<Style Selector="TabItem">
+			<Setter Property="FontSize" Value="16"/>
+		</Style>
+	</Window.Styles>
     <Grid ShowGridLines="True" Margin="0">
         <Grid.RowDefinitions>
-			<RowDefinition Height="Auto"></RowDefinition>
 			<RowDefinition Height="*"></RowDefinition>
-			<RowDefinition Height="10"></RowDefinition>
+			<RowDefinition Height="12"></RowDefinition>
 		</Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-		<Grid Grid.Row="0" ColumnDefinitions="*,auto,auto,auto">
-			<TextBlock Grid.Column="0">Title</TextBlock>
-			<Button Grid.Column="1">x</Button>
-			<Button Grid.Column="2">x</Button>
-			<Button Grid.Column="3">x</Button>
-		</Grid>
-		<TabControl Grid.Row="1" Margin="0">
+		<TabControl Grid.Row="0" Margin="0">
 			<TabItem Header="Current File" Margin="0">
+				<TextBox AcceptsReturn="True" BorderThickness="0" AcceptsTab="True"
+						 ></TextBox>
+			</TabItem>
+			<TabItem Header="Current File 2" Margin="0">
 				<TextBox AcceptsReturn="True" BorderThickness="0"></TextBox>
 			</TabItem>
 		</TabControl>

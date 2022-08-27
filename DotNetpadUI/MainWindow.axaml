@@ -23,19 +23,23 @@
 			<Setter Property="FontSize" Value="16"/>
 		</Style>
 	</Window.Styles>
-		<TabControl Margin="0">
-			<TabItem Header="Current File" >
-				<TextBox Name="TextBox" AcceptsReturn="True" BorderThickness="0" AcceptsTab="True"
-						 Margin="0,0,0,10">
+	<TabControl  Grid.Column="0" Margin="0" Items="{Binding}">
+		<TabControl.ItemTemplate>
+			<DataTemplate>
+				<TextBlock Text="{Binding Header}" />
+			</DataTemplate>
+		</TabControl.ItemTemplate>
+		<TabControl.ContentTemplate>
+			<DataTemplate>
+				<TextBox Text="{Binding Content}" AcceptsReturn="True" AcceptsTab="True" BorderThickness="0"
+						 Margin="0,0,0,10" GotFocus="OnGotFocus_SetTab">
 					<TextBox.ContextMenu>
 						<ContextMenu>
 							<MenuItem Header="Save To Cache" Click="OnClick_SaveToCache"/>
 						</ContextMenu>
 					</TextBox.ContextMenu>
 				</TextBox>
-			</TabItem>
-			<TabItem Header="Current File 2" Margin="0">
-				<TextBox AcceptsReturn="True" BorderThickness="0"></TextBox>
-			</TabItem>
-		</TabControl>
+			</DataTemplate>
+		</TabControl.ContentTemplate>
+	</TabControl>
 </Window>

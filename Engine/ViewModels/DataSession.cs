@@ -1,12 +1,26 @@
 ﻿using Engine.Models;
 using IOLib;
+using System.Collections.ObjectModel;
 
 namespace Engine.ViewModels
 {
 	public class DataSession
 	{
 		private const string SAVE_FILE_PATH = "cache\\data.txt";
-		public TextBoxModel CurrentData { get; set; } = new();
+
+		public ObservableCollection<TextBoxModel> OpenTabs { get; set; }
+
+		public object CurrentTab { get; set; } = new();
+
+		public DataSession()
+		{
+			if (OpenTabs == null)
+			{
+				OpenTabs = new();
+				OpenTabs.Add(new TextBoxModel(1, "Tab 1"));
+			}
+		}
+
 
 		public void SaveTextBoxData(string text)
 		{

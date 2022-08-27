@@ -11,12 +11,12 @@ namespace DotNetpadUI
         {
             InitializeComponent();
             _dataSession = new();
-            TextBox.Text = _dataSession.CurrentData.Content;
+            TextBox.Text = _dataSession.LoadTextBoxData();
         }
 
         public void OnClick_SaveToCache(object sender, RoutedEventArgs e)
         {
-            TextBox.Text = "PASSED";
+            _dataSession.SaveTextBoxData(TextBox.Text);
         }
     }
 }

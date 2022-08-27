@@ -2,7 +2,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="225"
         x:Class="DotNetpadUI.MainWindow"
         Title=".Netpad">
 	<Window.Styles>
@@ -25,8 +25,14 @@
 	</Window.Styles>
 		<TabControl Margin="0">
 			<TabItem Header="Current File" >
-				<TextBox AcceptsReturn="True" BorderThickness="0" AcceptsTab="True"
-						 Margin="0,0,0,10"></TextBox>
+				<TextBox Name="TextBox" AcceptsReturn="True" BorderThickness="0" AcceptsTab="True"
+						 Margin="0,0,0,10">
+					<TextBox.ContextMenu>
+						<ContextMenu>
+							<MenuItem Header="Save To Cache" Click="OnClick_SaveToCache"/>
+						</ContextMenu>
+					</TextBox.ContextMenu>
+				</TextBox>
 			</TabItem>
 			<TabItem Header="Current File 2" Margin="0">
 				<TextBox AcceptsReturn="True" BorderThickness="0"></TextBox>

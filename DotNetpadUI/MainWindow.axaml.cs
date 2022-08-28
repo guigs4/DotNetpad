@@ -2,13 +2,13 @@ using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Engine.ViewModels;
+using Engine.Services;
 
 namespace DotNetpadUI
 {
     public partial class MainWindow : Window
     {
         private DataSession _dataSession;
-        private int tabCount { get => _dataSession.OpenTabs.Count; }
 
         #region Event Delegates
 
@@ -18,21 +18,20 @@ namespace DotNetpadUI
         {
             InitializeComponent();
             _dataSession = new();
-            _dataSession.OpenTabs.Add(new(2,"tab 2"));
+            _dataSession.AddEmptyTab();
             DataContext = _dataSession.OpenTabs;
         }
 
         public void OnClick_SaveToCache(object sender, RoutedEventArgs e)
         {
             TextBox currentTab = _dataSession.CurrentTab as TextBox;
-            _dataSession.SaveTextBoxData(currentTab.Text);
+            CacheService.SaveTextBoxData(currentTab.Text);
         }
 
 
         public void OnClick_AddTab(object sender, RoutedEventArgs e)
         {
-            int newIndex = tabCount + 1;
-            _dataSession.OpenTabs.Add(new(newIndex, $"Tab {newIndex}"));
+            _dataSession.AddEmptyTab();
         }
 
         public void OnGotFocus_SetTab(object sender, GotFocusEventArgs e)

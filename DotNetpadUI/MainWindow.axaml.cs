@@ -5,6 +5,7 @@ using Engine.ViewModels;
 using Engine.Services;
 using Avalonia.Collections;
 using Avalonia.LogicalTree;
+using System.Collections.Generic;
 
 namespace DotNetpadUI
 {
@@ -20,32 +21,34 @@ namespace DotNetpadUI
         {
             InitializeComponent();
             _dataSession = new();
-            _dataSession.AddEmptyTab();
+            _dataSession.AddEmptyTab(0);
             DataContext = _dataSession.OpenTabs;
         }
 
         public void OnClick_SaveToCache(object sender, RoutedEventArgs e)
         {
-            TextBox currentTab = _dataSession.CurrentTab as TextBox;
-            CacheService.SaveTextBoxData(currentTab.Text);
+            TextBox currentTabTextBox = _dataSession.CurrentTabTextBox as TextBox;
+            CacheService.SaveTextBoxData(currentTabTextBox.Text);
         }
 
 
         public void OnClick_AddTab(object sender, RoutedEventArgs e)
         {
-            _dataSession.AddEmptyTab();
+            int NewTabIndex = _dataSession.OpenTabs.Count;
+            _dataSession.AddEmptyTab(NewTabIndex);
         }
 
         public void OnGotFocus_SetTab(object sender, GotFocusEventArgs e)
         {
-            _dataSession.CurrentTab = sender;
+            _dataSession.CurrentTabTextBox = sender;
+            e.Handled = true;
         }
 
-        public void OnClick_CloseTab(object sender, RoutedEventArgs e)
+        public void OnClick_CloseCurrentTab(object sender, RoutedEventArgs e)
         {
-            Button button = sender as Button;
-
-            
+            int selectedTab = TabControl.SelectedIndex;
+            _dataSession.RemoveTab(selectedTab);
+            _dataSession.ReorderTabIndex();
         }
     }
 }

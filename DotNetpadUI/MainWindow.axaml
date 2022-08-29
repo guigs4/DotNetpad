@@ -27,14 +27,11 @@
 			<Setter Property="FontSize" Value="16"/>
 		</Style>
 	</Window.Styles>
-	<TabControl  Grid.Column="0" Margin="0" Items="{Binding}">
+	<TabControl Name="TabControl" Grid.Column="0" Margin="0" Items="{Binding}" >
 		<TabControl.ItemTemplate>
 			<DataTemplate DataType="tabs:TabModel">
 				<Grid ShowGridLines="True" ColumnDefinitions="Auto,Auto">
 					<TextBlock Grid.Column="0" Text="{ Binding Header }" />
-					<Button Grid.Column="1" FontSize="10" Height="20" 
-							Padding="3" 
-							>x</Button>
 				</Grid>
 			</DataTemplate>
 		</TabControl.ItemTemplate>
@@ -46,6 +43,7 @@
 						<ContextMenu>
 							<MenuItem Header="New Tab" Click="OnClick_AddTab"/>
 							<MenuItem Header="Save To Cache" Click="OnClick_SaveToCache"/>
+							<MenuItem Header="Close Tab" Click="OnClick_CloseCurrentTab"/>
 						</ContextMenu>
 					</TextBox.ContextMenu>
 				</TextBox>

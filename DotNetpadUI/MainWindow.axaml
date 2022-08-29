@@ -4,6 +4,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="225"
         x:Class="DotNetpadUI.MainWindow"
+		xmlns:vm="clr-namespace:Engine.ViewModels;assembly=Engine"
+		x:DataType="vm:DataSession"
+		xmlns:tabs="clr-namespace:Engine.Models;assembly=Engine"
+		x:CompileBindings="True"
         Title=".Netpad">
 	<Window.Styles>
 		<Style Selector="TextBox:disabled /template/ Border#PART_BorderElement">
@@ -25,12 +29,17 @@
 	</Window.Styles>
 	<TabControl  Grid.Column="0" Margin="0" Items="{Binding}">
 		<TabControl.ItemTemplate>
-			<DataTemplate>
-				<TextBlock Text="{Binding Header}" />
+			<DataTemplate DataType="tabs:TabModel">
+				<Grid ShowGridLines="True" ColumnDefinitions="Auto,Auto">
+					<TextBlock Grid.Column="0" Text="{ Binding Header }" />
+					<Button Grid.Column="1" FontSize="10" Height="20" 
+							Padding="3" 
+							>x</Button>
+				</Grid>
 			</DataTemplate>
 		</TabControl.ItemTemplate>
 		<TabControl.ContentTemplate>
-			<DataTemplate>
+			<DataTemplate DataType="tabs:TabModel">
 				<TextBox Text="{Binding Content}" AcceptsReturn="True" AcceptsTab="True" BorderThickness="0"
 						 Margin="0,0,0,10" GotFocus="OnGotFocus_SetTab">
 					<TextBox.ContextMenu>

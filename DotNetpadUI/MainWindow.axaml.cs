@@ -3,6 +3,8 @@ using Avalonia.Input;
 using Avalonia.Interactivity;
 using Engine.ViewModels;
 using Engine.Services;
+using Avalonia.Collections;
+using Avalonia.LogicalTree;
 
 namespace DotNetpadUI
 {
@@ -37,6 +39,13 @@ namespace DotNetpadUI
         public void OnGotFocus_SetTab(object sender, GotFocusEventArgs e)
         {
             _dataSession.CurrentTab = sender;
+        }
+
+        public void OnClick_CloseTab(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+
+            
         }
     }
 }

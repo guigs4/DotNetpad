@@ -6,7 +6,7 @@ namespace Engine.ViewModels
 {
 	public class DataSession
 	{
-		public ObservableCollection<TextBoxModel> OpenTabs { get; set; }
+		public ObservableCollection<TabModel> OpenTabs { get; set; }
         private int tabCount { get => OpenTabs.Count; }
         public object CurrentTab { get; set; } = new();
 
@@ -21,7 +21,7 @@ namespace Engine.ViewModels
 		public void AddEmptyTab()
 		{
 			int newID = tabCount+1;
-			OpenTabs.Add(new(newID,$"Tab {newID}"));
+			OpenTabs.Add(new(newID));
 		}
 	}
 }

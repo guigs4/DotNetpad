@@ -1,7 +1,6 @@
 ﻿using Engine.Models;
-using IOLib;
-using System;
 using System.Collections.ObjectModel;
+using Engine.Services;
 
 namespace Engine.ViewModels
 {
@@ -14,10 +13,7 @@ namespace Engine.ViewModels
 
 		public DataSession()
 		{
-			if (OpenTabs == null)
-			{
-				OpenTabs = new();
-			}
+			OpenTabs ??= new(); //if 'null' create new
 		}
 
 		public void AddEmptyTab(int newTabIndex)
@@ -41,6 +37,28 @@ namespace Engine.ViewModels
 				tab.Id = newId;
 
                 newId++;
+			}
+		}
+
+		public void LoadExistingTabs()
+		{
+			string[] files = Directory.GetFiles("cache\\", "data *?.txt");
+
+			if (files == null)
+			{
+				AddEmptyTab(0);
+				return;
+			}
+			
+			int id = 0;
+
+			foreach (string file in files)
+			{
+				string content = CacheService.LoadTextBoxData(file);
+
+                OpenTabs.Add(new(id, "Tab", content));
+
+				id++;
 			}
 		}
 	}

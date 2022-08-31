@@ -30,9 +30,7 @@
 	<TabControl Name="TabControl" Grid.Column="0" Margin="0" Items="{Binding}" >
 		<TabControl.ItemTemplate>
 			<DataTemplate DataType="tabs:TabModel">
-				<Grid ShowGridLines="True" ColumnDefinitions="Auto,Auto">
-					<TextBlock Grid.Column="0" Text="{ Binding Header }" />
-				</Grid>
+				<TextBlock Grid.Column="0" Text="{ Binding Header }" />
 			</DataTemplate>
 		</TabControl.ItemTemplate>
 		<TabControl.ContentTemplate>

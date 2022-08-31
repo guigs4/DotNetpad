@@ -18,8 +18,9 @@ namespace DotNetpadUI
         {
             InitializeComponent();
             _dataSession = new();
-            _dataSession.AddEmptyTab(0);
+            _dataSession.LoadExistingTabs();
             DataContext = _dataSession.OpenTabs;
+            
         }
 
         public void OnClick_SaveToCache(object sender, RoutedEventArgs e)

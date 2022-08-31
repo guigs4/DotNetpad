@@ -27,5 +27,17 @@ namespace Engine.Services
                 return "";
             }
         }
+
+        public static string LoadTextBoxData(string path)
+        {
+            if (File.Exists(path))
+            {
+                return IO.LoadStringFromFile(path);
+            }
+            else
+            {
+                throw new FileNotFoundException();
+            }
+        }
     }
 }

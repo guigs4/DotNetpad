@@ -11,6 +11,11 @@ namespace Engine.Services
             IO.SaveStringToFile(SAVE_FILE_PATH, text);
         }
 
+        public static void SaveTextBoxData(int id, string content)
+        {
+            IO.SaveStringToFile($"cache\\data {id}.txt",content);
+        }
+
         public static string LoadTextBoxData()
         {
             if (File.Exists(SAVE_FILE_PATH))

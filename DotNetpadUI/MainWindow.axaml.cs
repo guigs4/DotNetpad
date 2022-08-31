@@ -1,11 +1,8 @@
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
-using Engine.ViewModels;
 using Engine.Services;
-using Avalonia.Collections;
-using Avalonia.LogicalTree;
-using System.Collections.Generic;
+using Engine.ViewModels;
 
 namespace DotNetpadUI
 {
@@ -27,10 +24,11 @@ namespace DotNetpadUI
 
         public void OnClick_SaveToCache(object sender, RoutedEventArgs e)
         {
-            TextBox currentTabTextBox = _dataSession.CurrentTabTextBox as TextBox;
-            CacheService.SaveTextBoxData(currentTabTextBox.Text);
+            foreach (var tab in _dataSession.OpenTabs)
+            {
+                CacheService.SaveTextBoxData(tab.Id, tab.Content);
+            }
         }
-
 
         public void OnClick_AddTab(object sender, RoutedEventArgs e)
         {

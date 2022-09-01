@@ -7,10 +7,7 @@ namespace Engine.ViewModels
 	public class DataSession
 	{
 		public ObservableCollection<TabModel> OpenTabs { get; set; } //TODO: Move to Factory
-		public int TabIndexMax { get; set; } = 0;
-        public object CurrentTab { get; set; } = new();
-		public object CurrentTabTextBox { get; set; }
-
+		
 		public DataSession()
 		{
 			OpenTabs ??= new(); //if 'null' create new
@@ -27,6 +24,14 @@ namespace Engine.ViewModels
 			OpenTabs.Remove(tabToRemove);
 		}
 
+		public void SaveAllTabs()
+		{
+            foreach (var tab in OpenTabs.Where(t=> t.IsInternal))
+            {
+                CacheService.SaveTextBoxData(tab.Id, tab.Content);
+            }
+        }
+
 		public void ReorderTabIndex()
 		{
 			var currentTabList = OpenTabs;
@@ -40,11 +45,11 @@ namespace Engine.ViewModels
 			}
 		}
 
-		public void LoadExistingTabs()
+		public void LoadTabsFromCache()
 		{
-			string[] files = Directory.GetFiles("cache\\", "data *?.txt");
+			string[] files = CacheService.GetAllExistingCacheFiles();
 
-			if (files == null)
+			if (!files.Any())
 			{
 				AddEmptyTab(0);
 				return;

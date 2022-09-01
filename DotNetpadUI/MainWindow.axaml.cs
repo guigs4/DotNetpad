@@ -8,7 +8,7 @@ namespace DotNetpadUI
 {
     public partial class MainWindow : Window
     {
-        private DataSession _dataSession;
+        private readonly DataSession _dataSession;
 
         #region Event Delegates
 
@@ -18,29 +18,20 @@ namespace DotNetpadUI
         {
             InitializeComponent();
             _dataSession = new();
-            _dataSession.LoadExistingTabs();
+            _dataSession.LoadTabsFromCache();
             DataContext = _dataSession.OpenTabs;
             
         }
 
         public void OnClick_SaveToCache(object sender, RoutedEventArgs e)
         {
-            foreach (var tab in _dataSession.OpenTabs)
-            {
-                CacheService.SaveTextBoxData(tab.Id, tab.Content);
-            }
+            _dataSession.SaveAllTabs();
         }
 
         public void OnClick_AddTab(object sender, RoutedEventArgs e)
         {
             int NewTabIndex = _dataSession.OpenTabs.Count;
             _dataSession.AddEmptyTab(NewTabIndex);
-        }
-
-        public void OnGotFocus_SetTab(object sender, GotFocusEventArgs e)
-        {
-            _dataSession.CurrentTabTextBox = sender;
-            e.Handled = true;
         }
 
         public void OnClick_CloseCurrentTab(object sender, RoutedEventArgs e)

@@ -39,5 +39,10 @@ namespace Engine.Services
                 throw new FileNotFoundException();
             }
         }
+
+        public static string[] GetAllExistingCacheFiles()
+        {
+            return Directory.GetFiles("cache\\", "data *?.txt");
+        }
     }
 }

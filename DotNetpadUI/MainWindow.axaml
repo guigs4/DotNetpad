@@ -36,7 +36,7 @@
 		<TabControl.ContentTemplate>
 			<DataTemplate DataType="tabs:TabModel">
 				<TextBox Text="{Binding Content}" AcceptsReturn="True" AcceptsTab="True" BorderThickness="0"
-						 Margin="0,0,0,10" GotFocus="OnGotFocus_SetTab">
+						 Margin="0,0,0,10">
 					<TextBox.ContextMenu>
 						<ContextMenu>
 							<MenuItem Header="New Tab" Click="OnClick_AddTab"/>

@@ -26,7 +26,6 @@ Global
 		{BDD97A0E-6531-448E-A0D2-37442109A6B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BDD97A0E-6531-448E-A0D2-37442109A6B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDD97A0E-6531-448E-A0D2-37442109A6B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BDD97A0E-6531-448E-A0D2-37442109A6B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

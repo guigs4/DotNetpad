@@ -4,7 +4,7 @@ namespace Engine.Services
 {
 	public static class CacheService
 	{
-        private const string SAVE_FILE_PATH = "cache\\data.txt";
+        private const string SAVE_FILE_PATH = "cache/data.txt";
 
         public static void SaveTextBoxData(string text)
         {
@@ -13,7 +13,7 @@ namespace Engine.Services
 
         public static void SaveTextBoxData(int id, string content)
         {
-            IO.SaveStringToFile($"cache\\data {id}.txt",content);
+            IO.SaveStringToFile($"cache/data {id}.txt",content);
         }
 
         public static string LoadTextBoxData()
@@ -42,7 +42,13 @@ namespace Engine.Services
 
         public static string[] GetAllExistingCacheFiles()
         {
-            return Directory.GetFiles("cache\\", "data *?.txt");
+            return Directory.GetFiles("cache/", "data *?.txt");
+        }
+
+        public static void CreateDefaultDirectories()
+        {
+            Directory.CreateDirectory("cache/");
+            //TODO: Add the config directory
         }
     }
 }

@@ -8,7 +8,8 @@
 		x:DataType="vm:DataSession"
 		xmlns:tabs="clr-namespace:Engine.Models;assembly=Engine"
 		x:CompileBindings="True"
-        Title=".Netpad">
+        Title=".Netpad"
+		Name="MainUI">
 	<Window.Styles>
 		<Style Selector="TextBox:disabled /template/ Border#PART_BorderElement">
 			<Setter Property="BorderBrush" Value="#0078d7" />
@@ -42,6 +43,7 @@
 							<MenuItem Header="New Tab" Click="OnClick_AddTab"/>
 							<MenuItem Header="Save To Cache" Click="OnClick_SaveToCache"/>
 							<MenuItem Header="Close Tab" Click="OnClick_CloseCurrentTab"/>
+							<MenuItem Header="SaveDialog" Click="OnClick_SaveDialog"/>
 						</ContextMenu>
 					</TextBox.ContextMenu>
 				</TextBox>

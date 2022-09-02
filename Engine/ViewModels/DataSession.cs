@@ -7,7 +7,8 @@ namespace Engine.ViewModels
 	public class DataSession
 	{
 		public ObservableCollection<TabModel> OpenTabs { get; set; } //TODO: Move to Factory
-		
+		private int id;
+
 		public DataSession()
 		{
 			OpenTabs ??= new(); //if 'null' create new
@@ -47,6 +48,8 @@ namespace Engine.ViewModels
 
 		public void LoadTabsFromCache()
 		{
+			id = 0;
+
 			string[] files = CacheService.GetAllExistingCacheFiles();
 
 			if (!files.Any())
@@ -55,7 +58,7 @@ namespace Engine.ViewModels
 				return;
 			}
 			
-			int id = 0;
+			
 
 			foreach (string file in files)
 			{

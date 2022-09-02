@@ -6,9 +6,9 @@ namespace Engine.Services
 	{
         private const string SAVE_FILE_PATH = "cache/data.txt";
 
-        public static void SaveTextBoxData(string text)
+        public static void SaveTextBoxData(string path, string content)
         {
-            IO.SaveStringToFile(SAVE_FILE_PATH, text);
+            IO.SaveStringToFile(path, content);
         }
 
         public static void SaveTextBoxData(int id, string content)

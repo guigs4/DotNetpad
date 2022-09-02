@@ -58,7 +58,9 @@ namespace DotNetpadUI
 
         public void OnClick_SaveFileDialog(object sender, RoutedEventArgs e)
         {
-            //SaveFileDialogWindow.ExportFiles(MainUI, _dataSession);
+            int selectedTab = TabControl.SelectedIndex;
+            string tabContent = _dataSession.OpenTabs[selectedTab].Content;
+            SaveFileDialogWindow.ExportFile(MainUI, tabContent);
         }
 
         public void OnClick_OpenFileDialog(object sender, RoutedEventArgs e)

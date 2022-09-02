@@ -40,10 +40,11 @@
 						 Margin="0,0,0,10">
 					<TextBox.ContextMenu>
 						<ContextMenu>
+							<MenuItem Header="Open Files" Click="OnClick_OpenFileDialog"/>
+							<MenuItem Header="Export File" Click="OnClick_SaveFileDialog"/>
 							<MenuItem Header="New Tab" Click="OnClick_AddTab"/>
 							<MenuItem Header="Save To Cache" Click="OnClick_SaveToCache"/>
 							<MenuItem Header="Close Tab" Click="OnClick_CloseCurrentTab"/>
-							<MenuItem Header="SaveDialog" Click="OnClick_SaveDialog"/>
 						</ContextMenu>
 					</TextBox.ContextMenu>
 				</TextBox>

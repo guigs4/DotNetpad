@@ -50,5 +50,10 @@ namespace Engine.Services
             Directory.CreateDirectory("cache/");
             //TODO: Add the config directory
         }
+
+        public static string GetFileName(string path)
+        {
+            return Path.GetFileNameWithoutExtension(path);
+        }
     }
 }

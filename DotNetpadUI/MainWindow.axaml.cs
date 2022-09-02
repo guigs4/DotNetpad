@@ -1,6 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using DotNetpadUI.FileDialogs;
 using Engine.Services;
 using Engine.ViewModels;
 using System;
@@ -55,42 +56,15 @@ namespace DotNetpadUI
             _dataSession.ReorderTabIndex();
         }
 
-        public void OnClick_SaveDialog(object sender, RoutedEventArgs e)
+        public void OnClick_SaveFileDialog(object sender, RoutedEventArgs e)
         {
-            testAsync();
-
-            //var saveDialog = new SaveFileDialog();
-
-            //saveDialog.ShowAsync(MainUI);
+            //SaveFileDialogWindow.ExportFiles(MainUI, _dataSession);
         }
 
-        private async Task testAsync()
+        public void OnClick_OpenFileDialog(object sender, RoutedEventArgs e)
         {
-            var dlg = new OpenFileDialog();
-            dlg.Filters.Add(new FileDialogFilter() { Name = "Text Files", Extensions = { "txt" } });
-            dlg.Filters.Add(new FileDialogFilter() { Name = "All Files", Extensions = { "*" } });
-            dlg.AllowMultiple = true;
-
-            var result = await dlg.ShowAsync(MainUI);
-            if (result != null)
-            {
-                string[] fileNames = result;
-                var sb = new StringBuilder();
-                int indexTest = _dataSession.OpenTabs.Count -1;
-                foreach (string fileName in fileNames)
-                {
-                    try
-                    {
-                        _dataSession.OpenTabs.Add(new(indexTest, fileName, CacheService.LoadTextBoxData(fileName), false));
-                        indexTest++;
-                    }
-                    catch (Exception ex)
-                    {
-                        string text = string.Format("Error: {0}\n", ex.Message);
-                        sb.Append(text);
-                    }
-                }
-            }
+            OpenFileDialogWindow.OpenFiles(MainUI, _dataSession);
         }
+
     }
 }

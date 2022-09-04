@@ -15,17 +15,7 @@ namespace DotNetpadUI
         private readonly DataSession _dataSession;
 
         #region Event Delegates
-        //public delegate void ClickEventHandler(object sender, RoutedEventArgs e);
-
-        //public static readonly RoutedEvent<RoutedEventArgs> ClickEvent =
-        //    RoutedEvent.Register<Button,RoutedEventArgs>(nameof(Click), RoutingStrategies.Bubble);
-
-        //// Provide CLR accessors for the event
-        //public event EventHandler<RoutedEventArgs> Click
-        //{
-        //    add => AddHandler(ClickEvent, value);
-        //    remove => RemoveHandler(ClickEvent, value);
-        //}
+        
         #endregion
 
         public MainWindow()
@@ -47,6 +37,7 @@ namespace DotNetpadUI
         {
             int NewTabIndex = _dataSession.OpenTabs.Count;
             _dataSession.AddEmptyTab(NewTabIndex);
+            TabControl.SelectedItem = _dataSession.OpenTabs[^1];
         }
 
         public void OnClick_CloseCurrentTab(object sender, RoutedEventArgs e)
@@ -63,9 +54,10 @@ namespace DotNetpadUI
             SaveFileDialogWindow.ExportFile(MainUI, tabContent);
         }
 
-        public void OnClick_OpenFileDialog(object sender, RoutedEventArgs e)
+        public async void OnClick_OpenFileDialog(object sender, RoutedEventArgs e)
         {
-            OpenFileDialogWindow.OpenFiles(MainUI, _dataSession);
+            await OpenFileDialogWindow.OpenFiles(MainUI, _dataSession);
+            TabControl.SelectedItem = _dataSession.OpenTabs[^1];
         }
 
     }

@@ -42,7 +42,9 @@ namespace Engine.Services
 
         public static string[] GetAllExistingCacheFiles()
         {
-            return Directory.GetFiles("cache/", "data *?.txt");
+            string[] files = Directory.GetFiles("cache/", "data *?.txt"); 
+            files.OrderBy(f => f); //ensures that the tabs are always loaded in order
+            return files;
         }
 
         public static void CreateDefaultDirectories()

@@ -16,18 +16,6 @@ namespace Engine.Services
             IO.SaveStringToFile($"cache/data {id}.txt",content);
         }
 
-        public static string LoadTextBoxData()
-        {
-            if (File.Exists(SAVE_FILE_PATH))
-            {
-                return IO.LoadStringFromFile(SAVE_FILE_PATH);
-            }
-            else
-            {
-                return "";
-            }
-        }
-
         public static string LoadTextBoxData(string path)
         {
             if (File.Exists(path))
@@ -43,10 +31,7 @@ namespace Engine.Services
         public static string[] GetAllExistingCacheFiles()
         {
             string[] files = Directory.GetFiles("cache/", "data *?.txt");
-
-            //ensures that the tabs are always loaded in order 
-            //Apparently this doesn't do anything but the bug is gone so TODO: Investigate
-            files.OrderBy(f => f); 
+ 
             return files;
         }
 

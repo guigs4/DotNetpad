@@ -42,8 +42,11 @@ namespace Engine.Services
 
         public static string[] GetAllExistingCacheFiles()
         {
-            string[] files = Directory.GetFiles("cache/", "data *?.txt"); 
-            files.OrderBy(f => f); //ensures that the tabs are always loaded in order
+            string[] files = Directory.GetFiles("cache/", "data *?.txt");
+
+            //ensures that the tabs are always loaded in order 
+            //Apparently this doesn't do anything but the bug is gone so TODO: Investigate
+            files.OrderBy(f => f); 
             return files;
         }
 

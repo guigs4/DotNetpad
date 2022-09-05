@@ -1,13 +1,12 @@
 ﻿using Engine.Models;
-using System.Collections.ObjectModel;
 using Engine.Services;
+using System.Collections.ObjectModel;
 
 namespace Engine.ViewModels
 {
 	public class DataSession
 	{
 		public ObservableCollection<TabModel> OpenTabs { get; set; } //TODO: Move to Factory
-		private int _id;
 
 		public DataSession()
 		{
@@ -27,9 +26,11 @@ namespace Engine.ViewModels
 
 		public void SaveAllTabs()
 		{
+			int id = 0;
             foreach (var tab in OpenTabs.Where(t=> t.IsInternal))
             {
-                CacheService.SaveTextBoxData(tab.Id, tab.Content);
+                CacheService.SaveTextBoxData(id, tab.Content);
+				id++;
             }
         }
 
@@ -48,7 +49,7 @@ namespace Engine.ViewModels
 
 		public void LoadTabsFromCache()
 		{
-			_id = 0;
+			int id = 0;
 
 			string[] files = CacheService.GetAllExistingCacheFiles();
 
@@ -64,9 +65,9 @@ namespace Engine.ViewModels
 			{
 				string content = CacheService.LoadTextBoxData(file);
 
-                OpenTabs.Add(new(_id, "Tab", content));
+                OpenTabs.Add(new(id, "Tab", content));
 
-				_id++;
+				id++;
 			}
 		}
 	}

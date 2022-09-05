@@ -59,8 +59,6 @@ namespace Engine.ViewModels
 				return;
 			}
 			
-			
-
 			foreach (string file in files)
 			{
 				string content = CacheService.LoadTextBoxData(file);

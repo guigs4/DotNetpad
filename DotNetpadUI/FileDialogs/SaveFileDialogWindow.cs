@@ -1,8 +1,5 @@
 ﻿using Avalonia.Controls;
 using Engine.Services;
-using Engine.ViewModels;
-using System.Text;
-using System;
 using System.Threading.Tasks;
 
 namespace DotNetpadUI.FileDialogs
@@ -13,6 +10,8 @@ namespace DotNetpadUI.FileDialogs
         {
             var dlg = new SaveFileDialog();
             dlg.Filters.Add(new FileDialogFilter() { Name = "Text Files", Extensions = { "txt" } });
+            dlg.Filters.Add(new FileDialogFilter() { Name = "Json Files", Extensions = { "json" } });
+            dlg.Filters.Add(new FileDialogFilter() { Name = "XML Files", Extensions = { "xml" } });
             dlg.Filters.Add(new FileDialogFilter() { Name = "All Files", Extensions = { "*" } });
 
             var result = await dlg.ShowAsync(parent);

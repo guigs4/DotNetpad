@@ -24,6 +24,7 @@ namespace DotNetpadUI
             CacheService.CreateDefaultDirectories();
             _dataSession = new();
             _dataSession.LoadTabsFromCache();
+            _dataSession.InitializeTimer(10);
             DataContext = _dataSession.OpenTabs;
             
         }

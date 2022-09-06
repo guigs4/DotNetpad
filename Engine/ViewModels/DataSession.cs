@@ -6,8 +6,9 @@ namespace Engine.ViewModels
 {
 	public class DataSession
 	{
+		private Timer timer;
 		public ObservableCollection<TabModel> OpenTabs { get; set; } //TODO: Move to Factory
-
+		
 		public DataSession()
 		{
 			OpenTabs ??= new(); //if 'null' create new
@@ -67,6 +68,23 @@ namespace Engine.ViewModels
 
 				id++;
 			}
+		}
+
+		public void InitializeTimer(int intervalInSeconds)
+		{
+			int interval = intervalInSeconds * 1000;
+            timer = new Timer(new TimerCallback(TickTimer), null, interval, interval);
+		}
+
+		private void TickTimer(object state)
+		{
+			SaveAllTabs();
+		}
+
+		public void ChangeTimer(int intervalInSeconds)
+		{
+			int interval = intervalInSeconds * 1000;
+			timer.Change(interval, interval);
 		}
 	}
 }

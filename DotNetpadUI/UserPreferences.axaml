@@ -1,0 +1,46 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+		Width="600" Height="350"
+        x:Class="DotNetpadUI.UserPreferences"
+        Title="UserPreferences"
+		SystemDecorations="BorderOnly"
+		CanResize="True"
+		WindowStartupLocation="CenterOwner"
+		Name="UserPreferencesUI"
+		>
+	<Canvas Name="MyCanvas" Width="{Binding $parent.Width}" Height="{Binding $parent.Height}">
+		<TabControl Margin="0" Padding="0,0,0,35" BorderThickness="1" BorderBrush="Black" Width="{Binding #MyCanvas.Width}"
+					Height="{Binding #MyCanvas.Height}" >
+			<TabItem>
+				<TabItem.Header>
+					<TextBlock>Theme</TextBlock>
+				</TabItem.Header>
+				<TabItem.Content>
+					<Grid ShowGridLines="True" RowDefinitions="*,*" ColumnDefinitions="*,*,*,*"
+						  Margin="1">
+
+					</Grid>
+				</TabItem.Content>
+			</TabItem>
+			<TabItem>
+				<TabItem.Header>
+					<TextBlock>Font</TextBlock>
+				</TabItem.Header>
+			</TabItem>
+			<TabItem>
+				<TabItem.Header>
+					<TextBlock>Cache</TextBlock>
+				</TabItem.Header>
+			</TabItem>
+		</TabControl>
+		<Button Canvas.Right="10" Canvas.Bottom="10" Click="OnClick_Apply">
+			Apply
+		</Button>
+		<Button Canvas.Right="75" Canvas.Bottom="10" Click="OnClick_Cancel">
+			Cancel
+		</Button>
+	</Canvas>
+</Window>

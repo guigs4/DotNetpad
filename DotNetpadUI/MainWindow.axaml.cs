@@ -1,12 +1,8 @@
 using Avalonia.Controls;
-using Avalonia.Input;
 using Avalonia.Interactivity;
 using DotNetpadUI.FileDialogs;
 using Engine.Services;
 using Engine.ViewModels;
-using System;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DotNetpadUI
 {
@@ -15,7 +11,7 @@ namespace DotNetpadUI
         private readonly DataSession _dataSession;
 
         #region Event Delegates
-        
+
         #endregion
 
         public MainWindow()
@@ -26,7 +22,7 @@ namespace DotNetpadUI
             _dataSession.LoadTabsFromCache();
             _dataSession.InitializeTimer(10);
             DataContext = _dataSession.OpenTabs;
-            
+
         }
 
         public void OnClick_SaveToCache(object sender, RoutedEventArgs e)
@@ -59,6 +55,13 @@ namespace DotNetpadUI
         {
             await OpenFileDialogWindow.OpenFiles(MainUI, _dataSession);
             TabControl.SelectedItem = _dataSession.OpenTabs[^1];
+        }
+
+        public async void OnClick_OpenPreferencesWindow(object sender, RoutedEventArgs e)
+        {
+            UserPreferences userPreferences = new();
+            userPreferences.Show(MainUI);
+
         }
 
     }

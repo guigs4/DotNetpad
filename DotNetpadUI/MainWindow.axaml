@@ -2,14 +2,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="225"
+        mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
         x:Class="DotNetpadUI.MainWindow"
 		xmlns:vm="clr-namespace:Engine.ViewModels;assembly=Engine"
+		xmlns:uc="clr-namespace:DotNetpadUI;assembly=DotNetpadUI"
 		x:DataType="vm:DataSession"
 		xmlns:tabs="clr-namespace:Engine.Models;assembly=Engine"
 		x:CompileBindings="True"
         Title=".Netpad"
-		Name="MainUI">
+		Name="MainUI"
+		WindowState="Maximized">
 	<Window.Styles>
 		<Style Selector="TextBox:disabled /template/ Border#PART_BorderElement">
 			<Setter Property="BorderBrush" Value="#0078d7" />
@@ -28,7 +30,8 @@
 			<Setter Property="FontSize" Value="16"/>
 		</Style>
 	</Window.Styles>
-	<TabControl Name="TabControl" Grid.Column="0" Margin="0" Items="{Binding}" >
+	
+	<TabControl Name="TabControl" Items="{Binding}" >
 		<TabControl.ItemTemplate>
 			<DataTemplate DataType="tabs:TabModel">
 				<TextBlock Grid.Column="0" Text="{ Binding Header }" />
@@ -45,6 +48,7 @@
 							<MenuItem Header="New Tab" Click="OnClick_AddTab"/>
 							<MenuItem Header="Save To Cache" Click="OnClick_SaveToCache"/>
 							<MenuItem Header="Close Tab" Click="OnClick_CloseCurrentTab"/>
+							<MenuItem Header="Preferences" Click="OnClick_OpenPreferencesWindow"/>
 						</ContextMenu>
 					</TextBox.ContextMenu>
 				</TextBox>

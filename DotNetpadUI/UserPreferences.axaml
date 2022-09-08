@@ -6,8 +6,7 @@
 		Width="600" Height="350"
         x:Class="DotNetpadUI.UserPreferences"
         Title="UserPreferences"
-		SystemDecorations="BorderOnly"
-		CanResize="True"
+		SystemDecorations="None"
 		WindowStartupLocation="CenterOwner"
 		Name="UserPreferencesUI"
 		>

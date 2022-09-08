@@ -70,10 +70,9 @@ namespace Engine.ViewModels
 			}
 		}
 
-		public void InitializeTimer(int intervalInSeconds)
+		public void InitializeTimer(int intervalInMs)
 		{
-			int interval = intervalInSeconds * 1000;
-            timer = new Timer(new TimerCallback(TickTimer), null, interval, interval);
+            timer = new Timer(new TimerCallback(TickTimer), null, intervalInMs, intervalInMs);
 		}
 
 		private void TickTimer(object state)
@@ -81,10 +80,9 @@ namespace Engine.ViewModels
 			SaveAllTabs();
 		}
 
-		public void ChangeTimer(int intervalInSeconds)
+		public void ChangeTimer(int intervalInMs)
 		{
-			int interval = intervalInSeconds * 1000;
-			timer.Change(interval, interval);
+			timer.Change(intervalInMs, intervalInMs);
 		}
 	}
 }

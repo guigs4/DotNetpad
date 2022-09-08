@@ -61,8 +61,6 @@ namespace DotNetpadUI
         {
             UserPreferences userPreferences = new();
             userPreferences.Show(MainUI);
-
         }
-
     }
 }

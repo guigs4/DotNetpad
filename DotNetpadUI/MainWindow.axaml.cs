@@ -1,7 +1,6 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using DotNetpadUI.FileDialogs;
-using Engine.Services;
 using Engine.ViewModels;
 
 namespace DotNetpadUI
@@ -17,10 +16,8 @@ namespace DotNetpadUI
         public MainWindow()
         {
             InitializeComponent();
-            CacheService.CreateDefaultDirectories();
             _dataSession = new();
-            _dataSession.LoadTabsFromCache();
-            _dataSession.InitializeTimer(10);
+            _dataSession.Initialize();
             DataContext = _dataSession.OpenTabs;
 
         }

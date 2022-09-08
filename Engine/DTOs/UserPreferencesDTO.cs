@@ -1,6 +1,6 @@
-﻿namespace Engine.Models
+﻿namespace Engine.DTOs
 {
-    public class UserPreferencesModel
+    public class UserPreferencesDTO
     {
         public int SaveIntervalInMinutes { get; set; }
         public int SaveIntervalInSeconds { get; set; }
@@ -8,7 +8,7 @@
         {
             get
             {
-                return ((SaveIntervalInMinutes * 60) + SaveIntervalInSeconds) * 1000;
+                return (SaveIntervalInMinutes * 60 + SaveIntervalInSeconds) * 1000;
             }
         }
         public string? CachePath { get; set; }

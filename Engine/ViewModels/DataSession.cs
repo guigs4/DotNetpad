@@ -6,13 +6,20 @@ namespace Engine.ViewModels
 {
 	public class DataSession
 	{
-		private Timer timer;
+		private Timer _timer;
 		public ObservableCollection<TabModel> OpenTabs { get; set; } //TODO: Move to Factory
 		
 		public DataSession()
 		{
 			OpenTabs ??= new(); //if 'null' create new
 		}
+
+		public void Initialize()
+		{
+            DiskIOService.CreateDefaultDirectories();
+			LoadTabsFromCache();
+			InitializeTimer(10000);
+        }
 
 		public void AddEmptyTab(int newTabIndex)
 		{
@@ -30,7 +37,7 @@ namespace Engine.ViewModels
 			int id = 0;
             foreach (var tab in OpenTabs.Where(t=> t.IsInternal))
             {
-                CacheService.SaveTextBoxData(id, tab.Content);
+                TabDataIOService.SaveTextBoxData(id, tab.Content);
 				id++;
             }
         }
@@ -52,7 +59,7 @@ namespace Engine.ViewModels
 		{
 			int id = 0;
 
-			string[] files = CacheService.GetAllExistingCacheFiles();
+			string[] files = DiskIOService.GetAllExistingCacheFiles();
 
 			if (!files.Any())
 			{
@@ -62,7 +69,7 @@ namespace Engine.ViewModels
 			
 			foreach (string file in files)
 			{
-				string content = CacheService.LoadTextBoxData(file);
+				string content = TabDataIOService.LoadTextBoxData(file);
 
                 OpenTabs.Add(new(id, "Tab", content));
 
@@ -72,7 +79,7 @@ namespace Engine.ViewModels
 
 		public void InitializeTimer(int intervalInMs)
 		{
-            timer = new Timer(new TimerCallback(TickTimer), null, intervalInMs, intervalInMs);
+            _timer = new Timer(new TimerCallback(TickTimer), null, intervalInMs, intervalInMs);
 		}
 
 		private void TickTimer(object state)
@@ -82,7 +89,7 @@ namespace Engine.ViewModels
 
 		public void ChangeTimer(int intervalInMs)
 		{
-			timer.Change(intervalInMs, intervalInMs);
+			_timer.Change(intervalInMs, intervalInMs);
 		}
 	}
 }

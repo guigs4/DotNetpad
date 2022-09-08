@@ -17,7 +17,7 @@ namespace DotNetpadUI.FileDialogs
             var result = await dlg.ShowAsync(parent);
             if (result != null)
             {
-                CacheService.SaveTextBoxData(result, content);
+                TabDataIOService.SaveTextBoxData(result, content);
             }
         }
     }

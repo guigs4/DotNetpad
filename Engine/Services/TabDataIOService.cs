@@ -2,7 +2,7 @@
 
 namespace Engine.Services
 {
-	public static class CacheService
+	public static class TabDataIOService
 	{
 
         public static void SaveTextBoxData(string path, string content)
@@ -25,24 +25,6 @@ namespace Engine.Services
             {
                 throw new FileNotFoundException();
             }
-        }
-
-        public static string[] GetAllExistingCacheFiles()
-        {
-            string[] files = Directory.GetFiles("cache/", "data *?.txt");
- 
-            return files;
-        }
-
-        public static void CreateDefaultDirectories()
-        {
-            Directory.CreateDirectory("cache/");
-            //TODO: Add the config directory
-        }
-
-        public static string GetFileName(string path)
-        {
-            return Path.GetFileNameWithoutExtension(path);
         }
     }
 }

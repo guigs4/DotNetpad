@@ -20,5 +20,15 @@
         {
             return Path.GetFileNameWithoutExtension(path);
         }
+
+        public static void SaveStringToFile(string path, string content)
+        {
+            File.WriteAllText(path, content);
+        }
+
+        public static string LoadStringFromFile(string path)
+        {
+            return File.ReadAllText(path);
+        }
     }
 }

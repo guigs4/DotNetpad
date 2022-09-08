@@ -20,14 +20,14 @@ namespace DotNetpadUI.FileDialogs
             var result = await dlg.ShowAsync(parent);
             if (result != null)
             {
-                string[] fileNames = result;
+                string[] filePaths = result;
                 int tabIndex = dataSession.OpenTabs.Count - 1;
-                foreach (string fileName in fileNames)
+                foreach (string filePath in filePaths)
                 {
                     try
                     {
-                        string header = CacheService.GetFileName(fileName);
-                        dataSession.OpenTabs.Add(new(tabIndex, header, CacheService.LoadTextBoxData(fileName), false));
+                        string header = DiskIOService.GetFileName(filePath); //Consider calling it from the dataSession
+                        dataSession.OpenTabs.Add(new(tabIndex, header, TabDataIOService.LoadTextBoxData(filePath), false));
                         tabIndex++;
                     }
                     catch (Exception)

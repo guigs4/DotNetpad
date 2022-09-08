@@ -6,10 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Reference Include="IOLib">
-      <HintPath>..\..\FileIOLib\IOLib\bin\Release\net6.0\IOLib.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 </Project>

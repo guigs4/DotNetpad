@@ -24,7 +24,7 @@ namespace DotNetpadUI
         public override void Initialize()
         {
             AvaloniaXamlLoader.Load(this);
-            //'var services = new ServiceCollection().AddSingleton<IServiceCollection>().BuildServiceProvider();
+            //var services = new ServiceCollection().AddSingleton<IServiceCollection>().BuildServiceProvider();
             //var viewModel = ActivatorUtilities.CreateInstance<DataSession>(services);
         }
 

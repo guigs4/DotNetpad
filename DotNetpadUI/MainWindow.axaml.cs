@@ -13,6 +13,11 @@ namespace DotNetpadUI
 
         #endregion
 
+        public MainWindow() //exists solely for the Designer
+        {
+            InitializeComponent();
+        }
+
         public MainWindow(IDataSession dataSession)
         {
             InitializeComponent();

@@ -8,7 +8,7 @@ namespace DotNetpadUI.FileDialogs
 {
     public class OpenFileDialogWindow
     {
-        public static async Task OpenFiles(Window parent, DataSession dataSession)//TODO: Dependency injection
+        public static async Task OpenFiles(Window parent, IDataSession dataSession)//TODO: Dependency injection
         {
             var dlg = new OpenFileDialog();
             dlg.Filters.Add(new FileDialogFilter() { Name = "Text Files", Extensions = { "txt" } });

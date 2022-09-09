@@ -7,16 +7,16 @@ namespace DotNetpadUI
 {
     public partial class MainWindow : Window
     {
-        private readonly DataSession _dataSession;
+        private readonly IDataSession _dataSession;
 
         #region Event Delegates
 
         #endregion
 
-        public MainWindow()
+        public MainWindow(IDataSession dataSession)
         {
             InitializeComponent();
-            _dataSession = new();
+            _dataSession = dataSession;
             _dataSession.Initialize();
             DataContext = _dataSession.OpenTabs;
 

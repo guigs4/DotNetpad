@@ -28,11 +28,35 @@
 				<TabItem.Header>
 					<TextBlock>Font</TextBlock>
 				</TabItem.Header>
+				<TabItem.Content>
+					<Grid ShowGridLines="True" RowDefinitions="*,*,*,*">
+						<TextBlock Grid.Row="0">Font</TextBlock>
+						<ComboBox Grid.Row="1" Name="fontComboBox">
+							<ComboBox.ItemTemplate>
+								<DataTemplate>
+									<TextBlock Text="{Binding Name}" FontFamily="{Binding}"/>
+								</DataTemplate>
+							</ComboBox.ItemTemplate>
+						</ComboBox>
+						<TextBlock Grid.Row="2">Size</TextBlock>
+						<NumericUpDown Grid.Row="3" Value="0" Increment="1" Minimum="1" ShowButtonSpinner="False"/>
+					</Grid>
+				</TabItem.Content>
 			</TabItem>
 			<TabItem>
 				<TabItem.Header>
 					<TextBlock>Cache</TextBlock>
 				</TabItem.Header>
+				<TabItem.Content>
+					<Grid ShowGridLines="True" RowDefinitions="*,*,*,*" ColumnDefinitions="*,*,*">
+						<TextBlock Grid.Row="0">Cache Path</TextBlock>
+						<TextBox Grid.Row="1" Grid.ColumnSpan="3" AcceptsReturn="False" AcceptsTab="False" Watermark="Path" ></TextBox>
+						<TextBlock Grid.Row="2">Cache Interval</TextBlock>
+						<NumericUpDown Grid.Row="3" Value="0" Increment="1" Minimum="0" ShowButtonSpinner="False"/>
+						<NumericUpDown Grid.Row="3" Grid.Column="1" Value="0" Increment="1" Minimum="0" Maximum="59"
+									   ShowButtonSpinner="False"/>
+					</Grid>
+				</TabItem.Content>
 			</TabItem>
 		</TabControl>
 		<Button Canvas.Right="10" Canvas.Bottom="10" Click="OnClick_Apply">

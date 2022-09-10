@@ -6,4 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Defaults\DefaultUserPreferences.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Defaults\DefaultUserPreferences.txt" />
+  </ItemGroup>
+
 </Project>

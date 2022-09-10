@@ -8,7 +8,7 @@ namespace Engine.ViewModels
 	{
 		public Timer _timer;
 		public ObservableCollection<TabModel> OpenTabs { get; set; } //TODO: Move to Factory
-		public UserPreferences CurrentUserPreferences { get; set; }
+		public UserPreferencesModel CurrentUserPreferences { get; set; }
 
 		public DataSession()
 		{

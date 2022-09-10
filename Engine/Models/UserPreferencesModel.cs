@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text.Json.Serialization;
 
 namespace Engine.Models
 {
-    public class UserPreferences
+    public class UserPreferencesModel
     {
         public int SaveIntervalInMinutes { get; set; }
         public int SaveIntervalInSeconds { get; set; }
+        [JsonIgnore]
         public int SaveIntervalInMilliseconds
         {
             get
@@ -18,8 +15,11 @@ namespace Engine.Models
             }
         }
         public string? CachePath { get; set; }
-        public string Font { get; set; }
+        public string? Font { get; set; }
         public int FontSize { get; set; }
+        public string? ForegroundColor { get; set; }
+        public string? BackgroundColor { get; set; }
+
 
     }
 }

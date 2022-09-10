@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Defaults\DefaultUserPreferences.txt" />
+    <None Remove="Defaults\DefaultUserPreferences.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Defaults\DefaultUserPreferences.txt" />
+    <Content Include="Defaults\DefaultUserPreferences.json" />
   </ItemGroup>
 
 </Project>

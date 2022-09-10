@@ -1,4 +1,5 @@
 ﻿using Engine.Models;
+using System.Reflection;
 using System.Text.Json;
 using static Engine.Shared.SharedJsonSerializerOptions;
 
@@ -8,11 +9,26 @@ namespace Engine.Services
     {
         public static string SerializePreferencesObject(UserPreferencesModel userPreferencesModel)
         {
-            return JsonSerializer.Serialize(userPreferencesModel, UseSharedJsonSerializerOptions()); 
+            return JsonSerializer.Serialize(userPreferencesModel, UseSharedJsonSerializerOptions());
         }
-        public static void DeserializePreferencesObject(ref UserPreferencesModel userPreferencesModel, string jsonString)
+        public static UserPreferencesModel DeserializePreferencesObject()
         {
-            userPreferencesModel = JsonSerializer.Deserialize<UserPreferencesModel>(jsonString)!; 
+            string jsonString = DiskIOService.LoadStringFromFile("config/preferences.json");
+            return JsonSerializer.Deserialize<UserPreferencesModel>(jsonString)!;
+        }
+
+        public static void CheckIfUserPrefsExists()
+        {
+            if (!File.Exists("config/preferences.json"))
+            {
+                var assembly = Assembly.GetExecutingAssembly();
+                var resourceName = assembly.GetManifestResourceNames().Single(str=> str.EndsWith("DefaultUserPreferences.json"));
+                using (Stream stream = assembly.GetManifestResourceStream(resourceName)!)
+                using (StreamReader reader = new(stream!))
+                {
+                    DiskIOService.SaveStringToFile("config/preferences.json", reader.ReadToEnd());
+                }
+            }
         }
     }
 }

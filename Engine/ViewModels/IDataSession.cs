@@ -11,7 +11,7 @@ namespace Engine.ViewModels
         void ChangeTimer(int intervalInMs);
         void Initialize();
         void InitializeTimer(int intervalInMs);
-        void LoadTabsFromCache();
+        void LoadTabsFromDisk();
         void RemoveTab(int id);
         void ReorderTabIndex();
         void SaveAllTabs();

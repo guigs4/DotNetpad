@@ -18,7 +18,8 @@ namespace Engine.ViewModels
 		public void Initialize()
 		{
 			DiskIOService.CreateDefaultDirectories();
-			LoadTabsFromCache();
+			LoadUserPreferencesFromDisk();
+			LoadTabsFromDisk();
 			InitializeTimer(10000);
 		}
 
@@ -56,7 +57,7 @@ namespace Engine.ViewModels
 			}
 		}
 
-		public void LoadTabsFromCache()
+		public void LoadTabsFromDisk()
 		{
 			int id = 0;
 
@@ -78,6 +79,12 @@ namespace Engine.ViewModels
 			}
 		}
 
+		public void LoadUserPreferencesFromDisk()
+		{
+			UserPreferencesIOService.CheckIfUserPrefsExists();
+			CurrentUserPreferences = UserPreferencesIOService.DeserializePreferencesObject();
+		}
+
 		public void InitializeTimer(int intervalInMs)
 		{
 			_timer = new Timer(new TimerCallback(TickTimer), null, intervalInMs, intervalInMs);
@@ -92,5 +99,7 @@ namespace Engine.ViewModels
 		{
 			_timer.Change(intervalInMs, intervalInMs);
 		}
+
+		
 	}
 }

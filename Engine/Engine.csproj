@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Defaults\DefaultUserPreferences.json" />
+    <EmbeddedResource Include="Defaults\DefaultUserPreferences.json" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,7 @@
 ﻿namespace Engine.DTOs
 {
-    public class UserPreferencesDTO
+    public class UserPreferencesDTO //TODO: Create a model and instantiate
+
     {
         public int SaveIntervalInMinutes { get; set; }
         public int SaveIntervalInSeconds { get; set; }

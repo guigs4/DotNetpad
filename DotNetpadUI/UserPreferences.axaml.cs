@@ -8,13 +8,19 @@ namespace DotNetpadUI
 {
     public partial class UserPreferences : Window
     {
+        private readonly IDataSession _dataSession;
+
         public UserPreferences()
         {
             InitializeComponent();
-            
-            var fontComboBox = this.Find<ComboBox>("fontComboBox");
-            fontComboBox.Items = FontManager.Current.GetInstalledFontFamilyNames().Select(x => new FontFamily(x));
-            fontComboBox.SelectedIndex = 0;
+        }
+
+        public UserPreferences(IDataSession dataSession)
+        {
+            InitializeComponent();
+            InitialSetup();
+            _dataSession = dataSession; //could be assigned directly but just in case
+            DataContext = _dataSession;
         }
 
         public void OnClick_Apply(object sender, RoutedEventArgs e)
@@ -25,6 +31,13 @@ namespace DotNetpadUI
         public void OnClick_Cancel(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        public void InitialSetup()
+        {
+            var fontComboBox = this.Find<ComboBox>("fontComboBox");
+            fontComboBox.Items = FontManager.Current.GetInstalledFontFamilyNames().Select(x => new FontFamily(x));
+            fontComboBox.SelectedIndex = 0;
         }
     }
 }

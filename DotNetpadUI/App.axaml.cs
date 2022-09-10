@@ -16,7 +16,7 @@ namespace DotNetpadUI
             AppHost = Host.CreateDefaultBuilder().ConfigureServices((hostContext, services) =>
             {
                 services.AddSingleton<MainWindow>();
-                services.AddSingleton<IDataSession, DataSession>();
+                services.AddSingleton<IDataSession, DataSession>(); //TODO: Switch to Transient
             })
             .Build();
         }

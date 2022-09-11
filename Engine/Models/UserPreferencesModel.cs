@@ -2,7 +2,7 @@
 
 namespace Engine.Models
 {
-    public class UserPreferencesModel
+    public class UserPreferencesModel : ICloneable
     {
         public int SaveIntervalInMinutes { get; set; }
         public int SaveIntervalInSeconds { get; set; }
@@ -20,6 +20,10 @@ namespace Engine.Models
         public string? ForegroundColor { get; set; }
         public string? BackgroundColor { get; set; }
 
+        public object Clone()
+        {
+            return MemberwiseClone();
+        }
 
     }
 }

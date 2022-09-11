@@ -2,6 +2,7 @@
 using Engine.Services;
 using ReactiveUI;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace Engine.ViewModels
 {

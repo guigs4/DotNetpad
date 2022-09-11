@@ -39,7 +39,7 @@
 		</Style>
 	</Window.Styles>
 	
-	<TabControl Name="TabControl" Items="{Binding}" >
+	<TabControl Name="TabControl" Items="{Binding OpenTabs}" >
 		<TabControl.ItemTemplate>
 			<DataTemplate DataType="tabs:TabModel">
 				<TextBlock Grid.Column="0" Text="{ Binding Header }" />

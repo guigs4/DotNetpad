@@ -4,12 +4,14 @@ using Avalonia.Markup.Xaml.Converters;
 using Avalonia.Media;
 using DotNetpadUI.FileDialogs;
 using Engine.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
+using System.ComponentModel;
 
 namespace DotNetpadUI
 {
     public partial class MainWindow : Window
     {
-        private readonly IDataSession _dataSession;
+        private IDataSession _dataSession;
 
         #region Event Delegates
 
@@ -25,9 +27,8 @@ namespace DotNetpadUI
             InitializeComponent();
             _dataSession = dataSession;
             _dataSession.Initialize();
-            DataContext = _dataSession.OpenTabs;
-            MainUI.Background = (IBrush)ColorToBrushConverter.Convert(Color.Parse(_dataSession.CurrentUserPreferences.BackgroundColor),typeof(IBrush));
-            MainUI.Foreground = (IBrush)ColorToBrushConverter.Convert(Color.Parse(_dataSession.CurrentUserPreferences.ForegroundColor),typeof(IBrush));
+            DataContext = _dataSession;
+            UpdateInterface();
 
         }
 
@@ -63,10 +64,23 @@ namespace DotNetpadUI
             TabControl.SelectedItem = _dataSession.OpenTabs[^1];
         }
 
-        public async void OnClick_OpenPreferencesWindow(object sender, RoutedEventArgs e)
+        public void OnClick_OpenPreferencesWindow(object sender, RoutedEventArgs e)
         {
             UserPreferences userPreferences = new(_dataSession);
             userPreferences.Show(MainUI);
+        }
+
+        private void UpdateInterface()
+        {
+            Background = (IBrush)ColorToBrushConverter.Convert(Color.Parse(_dataSession.CurrentUserPreferences.BackgroundColor), typeof(IBrush));
+            Foreground = (IBrush)ColorToBrushConverter.Convert(Color.Parse(_dataSession.CurrentUserPreferences.ForegroundColor), typeof(IBrush));
+        }
+
+        public void SetPreferences(string backgroundColor, string foregroundColor)
+        {
+            _dataSession.CurrentUserPreferences.ForegroundColor = foregroundColor;
+            _dataSession.CurrentUserPreferences.BackgroundColor = backgroundColor;
+            UpdateInterface();
         }
     }
 }

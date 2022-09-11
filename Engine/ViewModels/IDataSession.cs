@@ -1,9 +1,10 @@
 ﻿using Engine.Models;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace Engine.ViewModels
 {
-    public interface IDataSession
+    public interface IDataSession : INotifyPropertyChanged
     {
         ObservableCollection<TabModel> OpenTabs { get; set; }
         UserPreferencesModel CurrentUserPreferences { get; set; }

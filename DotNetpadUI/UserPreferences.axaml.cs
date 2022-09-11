@@ -1,6 +1,8 @@
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Media;
+using Engine.Models;
 using Engine.ViewModels;
 using System.Linq;
 
@@ -8,18 +10,17 @@ namespace DotNetpadUI
 {
     public partial class UserPreferences : Window
     {
-        private readonly IDataSession _dataSession;
+        private readonly UserPreferencesModel _userPreferences;
+
         public UserPreferences()
         {
             InitializeComponent();
         }
 
-        public UserPreferences(IDataSession dataSession)
+        public UserPreferences(UserPreferencesModel userPreferences)
         {
             InitializeComponent();
-            InitialSetup();
-            _dataSession = dataSession; //could be assigned directly but just in case
-            DataContext = _dataSession.CurrentUserPreferences;
+            _userPreferences = userPreferences;
         }
 
         public void OnClick_Apply(object sender, RoutedEventArgs e)
@@ -42,14 +43,12 @@ namespace DotNetpadUI
 
         public void OnClick_SetLightTheme(object sender, RoutedEventArgs e)
         {
-            _dataSession.CurrentUserPreferences.BackgroundColor = "#FFFFFF";
-            _dataSession.CurrentUserPreferences.ForegroundColor= "#000000";
+            //Background = _userPreferences.BackgroundColor;
+            ((MainWindow)Owner).SetPreferences("#FFFFFF", "#000000");
         }
         public void OnClick_SetDarkTheme(object sender, RoutedEventArgs e)
         {
-            _dataSession.CurrentUserPreferences.BackgroundColor = "#000000";
-            _dataSession.CurrentUserPreferences.ForegroundColor = "#FFFFFF";
-
+            ((MainWindow)Owner).SetPreferences("#1E1E1E", "#FFFFFF");
         }
     }
 }

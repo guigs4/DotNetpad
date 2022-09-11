@@ -14,4 +14,8 @@
     <EmbeddedResource Include="Defaults\DefaultUserPreferences.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="ReactiveUI" Version="18.3.1" />
+  </ItemGroup>
+
 </Project>

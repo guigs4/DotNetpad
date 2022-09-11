@@ -1,14 +1,23 @@
 ﻿using Engine.Models;
 using Engine.Services;
+using ReactiveUI;
 using System.Collections.ObjectModel;
 
 namespace Engine.ViewModels
 {
-	public class DataSession : IDataSession
+	public class DataSession : ReactiveObject, IDataSession
 	{
+		private UserPreferencesModel _userPreferences;
 		public Timer _timer;
 		public ObservableCollection<TabModel> OpenTabs { get; set; } //TODO: Move to Factory
-		public UserPreferencesModel CurrentUserPreferences { get; set; }
+		public UserPreferencesModel CurrentUserPreferences 
+		{ 
+			get { return _userPreferences; }
+			set
+			{
+				this.RaiseAndSetIfChanged(ref _userPreferences, value);
+			} 
+		}
 
 		public DataSession()
 		{
@@ -21,6 +30,7 @@ namespace Engine.ViewModels
 			LoadUserPreferencesFromDisk();
 			LoadTabsFromDisk();
 			InitializeTimer(10000);
+			this.RaisePropertyChanged();
 		}
 
 		public void AddEmptyTab(int newTabIndex)

@@ -16,7 +16,7 @@ namespace DotNetpadUI
             AppHost = Host.CreateDefaultBuilder().ConfigureServices((hostContext, services) =>
             {
                 services.AddSingleton<MainWindow>();
-                services.AddSingleton<IDataSession, DataSession>(); //TODO: Switch to Transient
+                services.AddSingleton<IDataSession, DataSession>();
             })
             .Build();
         }
@@ -24,8 +24,6 @@ namespace DotNetpadUI
         public override void Initialize()
         {
             AvaloniaXamlLoader.Load(this);
-            //var services = new ServiceCollection().AddSingleton<IServiceCollection>().BuildServiceProvider();
-            //var viewModel = ActivatorUtilities.CreateInstance<DataSession>(services);
         }
 
         public override async void OnFrameworkInitializationCompleted()
@@ -34,12 +32,6 @@ namespace DotNetpadUI
 
             var startupForm = AppHost.Services.GetRequiredService<MainWindow>();
             startupForm.Show();
-
-            //if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
-            //{
-            //    desktop.MainWindow = new MainWindow();
-            //}
-
             base.OnFrameworkInitializationCompleted();
         }
     }

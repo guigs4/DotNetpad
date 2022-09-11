@@ -1,5 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using Avalonia.Markup.Xaml.Converters;
+using Avalonia.Media;
 using DotNetpadUI.FileDialogs;
 using Engine.ViewModels;
 
@@ -24,6 +26,8 @@ namespace DotNetpadUI
             _dataSession = dataSession;
             _dataSession.Initialize();
             DataContext = _dataSession.OpenTabs;
+            MainUI.Background = (IBrush)ColorToBrushConverter.Convert(Color.Parse(_dataSession.CurrentUserPreferences.BackgroundColor),typeof(IBrush));
+            MainUI.Foreground = (IBrush)ColorToBrushConverter.Convert(Color.Parse(_dataSession.CurrentUserPreferences.ForegroundColor),typeof(IBrush));
 
         }
 
@@ -49,7 +53,7 @@ namespace DotNetpadUI
         public void OnClick_SaveFileDialog(object sender, RoutedEventArgs e)
         {
             int selectedTab = TabControl.SelectedIndex;
-            string tabContent = _dataSession.OpenTabs[selectedTab].Content;
+            string? tabContent = _dataSession.OpenTabs[selectedTab].Content;
             SaveFileDialogWindow.ExportFile(MainUI, tabContent);
         }
 
@@ -61,7 +65,7 @@ namespace DotNetpadUI
 
         public async void OnClick_OpenPreferencesWindow(object sender, RoutedEventArgs e)
         {
-            UserPreferences userPreferences = new();
+            UserPreferences userPreferences = new(_dataSession);
             userPreferences.Show(MainUI);
         }
     }

@@ -6,6 +6,7 @@
         x:Class="DotNetpadUI.MainWindow"
 		xmlns:vm="clr-namespace:Engine.ViewModels;assembly=Engine"
 		xmlns:uc="clr-namespace:DotNetpadUI;assembly=DotNetpadUI"
+		xmlns:up="using:Engine.Models"
 		x:DataType="vm:DataSession"
 		xmlns:tabs="clr-namespace:Engine.Models;assembly=Engine"
 		x:CompileBindings="True"
@@ -13,6 +14,10 @@
 		Name="MainUI"
 		WindowState="Maximized">
 	<Window.Styles>
+		<Style Selector=":is(TemplatedControl)">
+			<Setter Property="Background" Value="{Binding #MainUI.Background}"/>
+			<Setter Property="Foreground" Value="{Binding #MainUI.Foreground}"/>
+		</Style>
 		<Style Selector="TextBox:disabled /template/ Border#PART_BorderElement">
 			<Setter Property="BorderBrush" Value="#0078d7" />
 			<Setter Property="Background" Value="Transparent" />
@@ -28,6 +33,9 @@
 		</Style>
 		<Style Selector="TabItem">
 			<Setter Property="FontSize" Value="16"/>
+		</Style>
+		<Style Selector="TabItem:isSelected">
+			<Setter Property="Foreground" Value="{Binding #MainUI.Foreground}"/>
 		</Style>
 	</Window.Styles>
 	

@@ -6,6 +6,7 @@ namespace Engine.ViewModels
     public interface IDataSession
     {
         ObservableCollection<TabModel> OpenTabs { get; set; }
+        UserPreferencesModel CurrentUserPreferences { get; set; }
 
         void AddEmptyTab(int newTabIndex);
         void ChangeTimer(int intervalInMs);

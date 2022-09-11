@@ -2,9 +2,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:up="using:Engine.Models"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
 		Width="600" Height="350"
         x:Class="DotNetpadUI.UserPreferences"
+		x:DataType="up:UserPreferencesModel"
         Title="UserPreferences"
 		SystemDecorations="None"
 		WindowStartupLocation="CenterOwner"
@@ -20,7 +22,21 @@
 				<TabItem.Content>
 					<Grid ShowGridLines="True" RowDefinitions="*,*" ColumnDefinitions="*,*,*,*"
 						  Margin="1">
-
+						<Grid Grid.Column="0">
+							<Button Click="OnClick_SetLightTheme">light</Button>
+						</Grid>
+						<Grid Grid.Column="1">
+							<Button>light high contrast</Button>
+						</Grid>
+						<Grid Grid.Column="2">
+							<Button Click="OnClick_SetDarkTheme">dark</Button>
+						</Grid>
+						<Grid Grid.Column="3">
+							<Button>dark high contrast</Button>
+						</Grid>
+						<Grid Grid.Row="1" Grid.ColumnSpan="4">
+							<Button>custom</Button>
+						</Grid>
 					</Grid>
 				</TabItem.Content>
 			</TabItem>

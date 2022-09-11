@@ -3,8 +3,8 @@ using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Media;
 using Engine.Models;
-using Engine.ViewModels;
 using System.Linq;
+using DotNetpadUI.Shared;
 
 namespace DotNetpadUI
 {
@@ -21,6 +21,7 @@ namespace DotNetpadUI
         {
             InitializeComponent();
             _userPreferences = userPreferences;
+            this.UpdateInterface(_userPreferences);
         }
 
         public void OnClick_Apply(object sender, RoutedEventArgs e)
@@ -43,12 +44,17 @@ namespace DotNetpadUI
 
         public void OnClick_SetLightTheme(object sender, RoutedEventArgs e)
         {
-            //Background = _userPreferences.BackgroundColor;
-            ((MainWindow)Owner).SetPreferences("#FFFFFF", "#000000");
+            _userPreferences.BackgroundColor = "#EBEBEB";
+            _userPreferences.ForegroundColor = "#000000";
+            this.UpdateInterface(_userPreferences);
+            ((MainWindow)Owner).UpdateInterface(_userPreferences);
         }
         public void OnClick_SetDarkTheme(object sender, RoutedEventArgs e)
         {
-            ((MainWindow)Owner).SetPreferences("#1E1E1E", "#FFFFFF");
+            _userPreferences.BackgroundColor = "#1E1E1E";
+            _userPreferences.ForegroundColor = "#FFFFFF";
+            this.UpdateInterface(_userPreferences);
+            ((MainWindow)Owner).UpdateInterface(_userPreferences);
         }
     }
 }

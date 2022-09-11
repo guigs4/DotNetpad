@@ -1,11 +1,8 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
-using Avalonia.Markup.Xaml.Converters;
-using Avalonia.Media;
 using DotNetpadUI.FileDialogs;
+using DotNetpadUI.Shared;
 using Engine.ViewModels;
-using Microsoft.Extensions.DependencyInjection;
-using System.ComponentModel;
 
 namespace DotNetpadUI
 {
@@ -28,7 +25,7 @@ namespace DotNetpadUI
             _dataSession = dataSession;
             _dataSession.Initialize();
             DataContext = _dataSession;
-            UpdateInterface();
+            this.UpdateInterface(_dataSession.CurrentUserPreferences);
 
         }
 
@@ -66,21 +63,9 @@ namespace DotNetpadUI
 
         public void OnClick_OpenPreferencesWindow(object sender, RoutedEventArgs e)
         {
-            UserPreferences userPreferences = new(_dataSession);
+            UserPreferences userPreferences = new(_dataSession.CurrentUserPreferences);
             userPreferences.Show(MainUI);
         }
 
-        private void UpdateInterface()
-        {
-            Background = (IBrush)ColorToBrushConverter.Convert(Color.Parse(_dataSession.CurrentUserPreferences.BackgroundColor), typeof(IBrush));
-            Foreground = (IBrush)ColorToBrushConverter.Convert(Color.Parse(_dataSession.CurrentUserPreferences.ForegroundColor), typeof(IBrush));
-        }
-
-        public void SetPreferences(string backgroundColor, string foregroundColor)
-        {
-            _dataSession.CurrentUserPreferences.ForegroundColor = foregroundColor;
-            _dataSession.CurrentUserPreferences.BackgroundColor = backgroundColor;
-            UpdateInterface();
-        }
     }
 }

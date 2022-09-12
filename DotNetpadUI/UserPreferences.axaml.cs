@@ -3,31 +3,36 @@ using Avalonia.Interactivity;
 using Avalonia.Media;
 using DotNetpadUI.Shared;
 using Engine.Models;
+using Engine.ViewModels;
 using System.Linq;
 
 namespace DotNetpadUI
 {
     public partial class UserPreferences : Window
     {
+        private IUserPreferencesVM _userPreferencesVM;
         private readonly UserPreferencesModel _tempUserPreferences;
-        private readonly UserPreferencesModel _mainUserPreferences;
+        private UserPreferencesModel _mainUserPreferences;
 
         public UserPreferences()
         {
             InitializeComponent();
         }
 
-        public UserPreferences(UserPreferencesModel userPreferences)
+        public UserPreferences(IUserPreferencesVM userPreferencesVM)
         {
             InitializeComponent();
-            _tempUserPreferences = (UserPreferencesModel)userPreferences.Clone();
-            _mainUserPreferences = userPreferences;
-            this.UpdateInterface(_tempUserPreferences);
+            _userPreferencesVM = userPreferencesVM;
+            _mainUserPreferences = userPreferencesVM.CurrentUserPreferences;
+            _tempUserPreferences = (UserPreferencesModel)_mainUserPreferences.Clone();
+            this.UpdateInterface(_mainUserPreferences);
         }
 
         public void OnClick_Apply(object sender, RoutedEventArgs e)
         {
-
+            _userPreferencesVM.SetGlobalPreferences(_tempUserPreferences);
+            _userPreferencesVM.SavePreferences();
+            UserPreferencesUI.Close();
         }
 
         public void OnClick_Cancel(object sender, RoutedEventArgs e)

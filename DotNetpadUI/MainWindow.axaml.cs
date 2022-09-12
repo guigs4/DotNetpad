@@ -9,19 +9,21 @@ namespace DotNetpadUI
     public partial class MainWindow : Window
     {
         private IDataSessionVM _dataSession;
+        private IUserPreferencesVM _userPreferences; //TODO: Extract interface
 
         public MainWindow() //exists solely for the Designer
         {
             InitializeComponent();
         }
 
-        public MainWindow(IDataSessionVM dataSession)
+        public MainWindow(IDataSessionVM dataSession, IUserPreferencesVM userPreferences)
         {
             InitializeComponent();
             _dataSession = dataSession;
+            _userPreferences = userPreferences;
             _dataSession.Initialize();
             DataContext = _dataSession;
-            this.UpdateInterface(_dataSession.CurrentUserPreferences);
+            this.UpdateInterface(_userPreferences.CurrentUserPreferences);
         }
 
         public void OnClick_SaveToCache(object sender, RoutedEventArgs e)
@@ -58,7 +60,7 @@ namespace DotNetpadUI
 
         public void OnClick_OpenPreferencesWindow(object sender, RoutedEventArgs e)
         {
-            UserPreferences userPreferences = new(_dataSession.CurrentUserPreferences);
+            UserPreferences userPreferences = new(_userPreferences);
             userPreferences.Show(MainUI);
         }
     }

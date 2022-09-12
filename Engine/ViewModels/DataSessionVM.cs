@@ -7,17 +7,8 @@ namespace Engine.ViewModels
 {
 	public class DataSessionVM : ReactiveObject, IDataSessionVM
 	{
-		private UserPreferencesModel _userPreferences;
 		private Timer _timer;
 		public ObservableCollection<TabModel> OpenTabs { get; set; } //TODO: Move to Factory
-		public UserPreferencesModel CurrentUserPreferences
-		{
-			get { return _userPreferences; }
-			set
-			{
-				this.RaiseAndSetIfChanged(ref _userPreferences, value); //Might be unecessary given the current implementation
-			}
-		}
 
 		public DataSessionVM()
 		{
@@ -27,7 +18,6 @@ namespace Engine.ViewModels
 		public void Initialize() //Maybe move into the ctor
 		{
 			DiskIOService.CreateDefaultDirectories();
-			LoadUserPreferencesFromDisk();
 			LoadTabsFromDisk();
 			InitializeTimer(10000);
 			this.RaisePropertyChanged();
@@ -87,12 +77,6 @@ namespace Engine.ViewModels
 
 				id++;
 			}
-		}
-
-		public void LoadUserPreferencesFromDisk()
-		{
-			UserPreferencesIOService.CheckIfUserPrefsExists();
-			CurrentUserPreferences = UserPreferencesIOService.DeserializePreferencesObject();
 		}
 
 		public void InitializeTimer(int intervalInMs)

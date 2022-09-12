@@ -1,11 +1,8 @@
 using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Engine.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.Threading.Tasks;
 
 namespace DotNetpadUI
 {
@@ -17,8 +14,9 @@ namespace DotNetpadUI
         {
             AppHost = Host.CreateDefaultBuilder().ConfigureServices((hostContext, services) =>
             {
-                services.AddSingleton<MainWindow>();
+                services.AddSingleton<MainWindow>(); //TRANSIENT
                 services.AddSingleton<IDataSessionVM, DataSessionVM>(); //TRANSIENT
+                services.AddSingleton<IUserPreferencesVM, UserPreferencesVM>();
             })
             .Build();
         }

@@ -8,7 +8,7 @@ namespace Engine.Services
     public static class UserPreferencesIOService
     {
         private const string _preferencesPath = "config/preferences.json";
-        public static void SavePreferences(this UserPreferencesModel userPreferences)
+        public static void SavePreferences(UserPreferencesModel userPreferences)
         {
             string jsonString = SerializePreferencesObject(userPreferences);
             DiskIOService.SaveStringToFile(_preferencesPath, jsonString);
@@ -30,7 +30,7 @@ namespace Engine.Services
             if (!File.Exists(_preferencesPath))
             {
                 var assembly = Assembly.GetExecutingAssembly();
-                var resourceName = assembly.GetManifestResourceNames().Single(str=> str.EndsWith("DefaultUserPreferences.json"));
+                var resourceName = assembly.GetManifestResourceNames().Single(str => str.EndsWith("DefaultUserPreferences.json"));
                 using Stream stream = assembly.GetManifestResourceStream(resourceName)!;
                 using StreamReader reader = new(stream!);
                 DiskIOService.SaveStringToFile("config/preferences.json", reader.ReadToEnd());

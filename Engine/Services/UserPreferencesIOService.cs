@@ -8,7 +8,7 @@ namespace Engine.Services
     public static class UserPreferencesIOService
     {
         private const string _preferencesPath = "config/preferences.json";
-        public static void SavePreferences(this UserPreferencesModel userPreferences)
+        public static void SavePreferences(UserPreferencesModel userPreferences)
         {
             string jsonString = SerializePreferencesObject(userPreferences);
             DiskIOService.SaveStringToFile(_preferencesPath, jsonString);

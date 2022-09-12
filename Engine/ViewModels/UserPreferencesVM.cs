@@ -20,7 +20,7 @@ namespace Engine.ViewModels
 
         public void SavePreferences()
         {
-            CurrentUserPreferences.SavePreferences();
+            UserPreferencesIOService.SavePreferences(CurrentUserPreferences);
         }
 
         public void SetGlobalPreferences(UserPreferencesModel preferencesToSet)

@@ -11,7 +11,6 @@ namespace Engine.ViewModels
 		private Timer _timer;
 		public ObservableCollection<TabModel> OpenTabs { get; set; } //TODO: Move to Factory
 		
-
 		public DataSessionVM()
 		{
 			OpenTabs ??= new(); //if 'null' create new

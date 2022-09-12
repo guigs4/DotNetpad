@@ -3,10 +3,14 @@ using Engine.Services;
 
 namespace Engine.ViewModels
 {
-    public class UserPreferencesVM
+    public class UserPreferencesVM : IUserPreferencesVM
     {
-        public UserPreferencesModel CurrentUserPreferences{ get; set; }
+        public UserPreferencesModel CurrentUserPreferences { get; set; }
 
+        public UserPreferencesVM()
+        {
+            LoadUserPreferencesFromDisk();
+        }
 
         public void LoadUserPreferencesFromDisk()
         {
@@ -23,5 +27,6 @@ namespace Engine.ViewModels
         {
             CurrentUserPreferences = preferencesToSet;
         }
+
     }
 }

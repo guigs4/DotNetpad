@@ -4,12 +4,14 @@ using Avalonia.Media;
 using DotNetpadUI.Shared;
 using Engine.Models;
 using Engine.Services;
+using Engine.ViewModels;
 using System.Linq;
 
 namespace DotNetpadUI
 {
     public partial class UserPreferences : Window
     {
+        private IUserPreferencesVM _userPreferencesVM;
         private readonly UserPreferencesModel _tempUserPreferences;
         private UserPreferencesModel _mainUserPreferences;
 
@@ -18,17 +20,19 @@ namespace DotNetpadUI
             InitializeComponent();
         }
 
-        public UserPreferences(UserPreferencesModel userPreferences)
+        public UserPreferences(IUserPreferencesVM userPreferencesVM)
         {
             InitializeComponent();
-            _tempUserPreferences = (UserPreferencesModel)userPreferences.Clone();
-            _mainUserPreferences = userPreferences;
+            _userPreferencesVM = userPreferencesVM;
+            _mainUserPreferences = userPreferencesVM.CurrentUserPreferences;
+            _tempUserPreferences = (UserPreferencesModel)_mainUserPreferences.Clone();
             this.UpdateInterface(_mainUserPreferences);
         }
 
         public void OnClick_Apply(object sender, RoutedEventArgs e)
         {
-            UserPreferencesIOService.SavePreferences(_tempUserPreferences);
+            _userPreferencesVM.SetGlobalPreferences(_tempUserPreferences);
+            _userPreferencesVM.SavePreferences();
             UserPreferencesUI.Close();
         }
 

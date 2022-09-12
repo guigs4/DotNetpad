@@ -19,7 +19,7 @@ namespace DotNetpadUI
             {
                 services.AddSingleton<MainWindow>(); //TRANSIENT
                 services.AddSingleton<IDataSessionVM, DataSessionVM>(); //TRANSIENT
-                services.AddSingleton<UserPreferencesVM>();
+                services.AddSingleton<IUserPreferencesVM, UserPreferencesVM>();
             })
             .Build();
         }

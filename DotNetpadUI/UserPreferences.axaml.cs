@@ -3,6 +3,7 @@ using Avalonia.Interactivity;
 using Avalonia.Media;
 using DotNetpadUI.Shared;
 using Engine.Models;
+using Engine.Services;
 using System.Linq;
 
 namespace DotNetpadUI
@@ -10,7 +11,7 @@ namespace DotNetpadUI
     public partial class UserPreferences : Window
     {
         private readonly UserPreferencesModel _tempUserPreferences;
-        private readonly UserPreferencesModel _mainUserPreferences;
+        private UserPreferencesModel _mainUserPreferences;
 
         public UserPreferences()
         {
@@ -22,12 +23,13 @@ namespace DotNetpadUI
             InitializeComponent();
             _tempUserPreferences = (UserPreferencesModel)userPreferences.Clone();
             _mainUserPreferences = userPreferences;
-            this.UpdateInterface(_tempUserPreferences);
+            this.UpdateInterface(_mainUserPreferences);
         }
 
         public void OnClick_Apply(object sender, RoutedEventArgs e)
         {
-
+            UserPreferencesIOService.SavePreferences(_tempUserPreferences);
+            UserPreferencesUI.Close();
         }
 
         public void OnClick_Cancel(object sender, RoutedEventArgs e)

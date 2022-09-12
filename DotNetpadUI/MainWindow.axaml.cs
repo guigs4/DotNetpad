@@ -10,10 +10,6 @@ namespace DotNetpadUI
     {
         private IDataSession _dataSession;
 
-        #region Event Delegates
-
-        #endregion
-
         public MainWindow() //exists solely for the Designer
         {
             InitializeComponent();
@@ -26,7 +22,6 @@ namespace DotNetpadUI
             _dataSession.Initialize();
             DataContext = _dataSession;
             this.UpdateInterface(_dataSession.CurrentUserPreferences);
-
         }
 
         public void OnClick_SaveToCache(object sender, RoutedEventArgs e)
@@ -66,6 +61,5 @@ namespace DotNetpadUI
             UserPreferences userPreferences = new(_dataSession.CurrentUserPreferences);
             userPreferences.Show(MainUI);
         }
-
     }
 }

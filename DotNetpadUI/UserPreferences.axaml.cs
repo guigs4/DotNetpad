@@ -1,11 +1,9 @@
-using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Media;
+using DotNetpadUI.Shared;
 using Engine.Models;
 using System.Linq;
-using DotNetpadUI.Shared;
-using System;
 
 namespace DotNetpadUI
 {

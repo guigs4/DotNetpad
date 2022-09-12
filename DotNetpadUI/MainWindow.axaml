@@ -7,7 +7,7 @@
 		xmlns:vm="clr-namespace:Engine.ViewModels;assembly=Engine"
 		xmlns:uc="clr-namespace:DotNetpadUI;assembly=DotNetpadUI"
 		xmlns:up="using:Engine.Models"
-		x:DataType="vm:DataSession"
+		x:DataType="vm:DataSessionVM"
 		xmlns:tabs="clr-namespace:Engine.Models;assembly=Engine"
 		x:CompileBindings="True"
         Title=".Netpad"

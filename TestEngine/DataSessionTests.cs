@@ -8,7 +8,7 @@ namespace TestEngine
         [Fact]
         public void DataSession_ShouldHaveAValidTabCollection()
         {
-            var DataSession = new DataSession();
+            var DataSession = new DataSessionVM();
             DataSession.AddEmptyTab(0);
             Assert.True(DataSession.OpenTabs.Any());
         }

@@ -8,14 +8,14 @@ namespace DotNetpadUI
 {
     public partial class MainWindow : Window
     {
-        private IDataSession _dataSession;
+        private IDataSessionVM _dataSession;
 
         public MainWindow() //exists solely for the Designer
         {
             InitializeComponent();
         }
 
-        public MainWindow(IDataSession dataSession)
+        public MainWindow(IDataSessionVM dataSession)
         {
             InitializeComponent();
             _dataSession = dataSession;

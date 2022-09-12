@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 
 namespace Engine.ViewModels
 {
-	public class DataSession : ReactiveObject, IDataSession
+	public class DataSessionVM : ReactiveObject, IDataSessionVM
 	{
 		private UserPreferencesModel _userPreferences;
 		private Timer _timer;
@@ -19,7 +19,7 @@ namespace Engine.ViewModels
 			}
 		}
 
-		public DataSession()
+		public DataSessionVM()
 		{
 			OpenTabs ??= new(); //if 'null' create new
 		}

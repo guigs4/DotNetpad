@@ -7,10 +7,9 @@ namespace Engine.ViewModels
 {
 	public class DataSessionVM : ReactiveObject, IDataSessionVM
 	{
-		private UserPreferencesModel _userPreferences;
 		private Timer _timer;
 		public ObservableCollection<TabModel> OpenTabs { get; set; } //TODO: Move to Factory
-		
+
 		public DataSessionVM()
 		{
 			OpenTabs ??= new(); //if 'null' create new

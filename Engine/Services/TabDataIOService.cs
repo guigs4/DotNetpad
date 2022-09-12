@@ -1,7 +1,7 @@
 ﻿namespace Engine.Services
 {
-	public static class TabDataIOService
-	{
+    public static class TabDataIOService
+    {
 
         public static void SaveTextBoxData(string path, string content)
         {
@@ -10,7 +10,7 @@
 
         public static void SaveTextBoxData(int id, string content)
         {
-            DiskIOService.SaveStringToFile($"cache/data {id}.txt",content);
+            DiskIOService.SaveStringToFile($"cache/data {id}.txt", content);
         }
 
         public static string LoadTextBoxData(string path)

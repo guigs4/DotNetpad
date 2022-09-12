@@ -30,7 +30,7 @@ namespace Engine.Services
             if (!File.Exists(_preferencesPath))
             {
                 var assembly = Assembly.GetExecutingAssembly();
-                var resourceName = assembly.GetManifestResourceNames().Single(str=> str.EndsWith("DefaultUserPreferences.json"));
+                var resourceName = assembly.GetManifestResourceNames().Single(str => str.EndsWith("DefaultUserPreferences.json"));
                 using Stream stream = assembly.GetManifestResourceStream(resourceName)!;
                 using StreamReader reader = new(stream!);
                 DiskIOService.SaveStringToFile("config/preferences.json", reader.ReadToEnd());

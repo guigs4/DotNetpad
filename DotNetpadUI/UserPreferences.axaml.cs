@@ -3,7 +3,6 @@ using Avalonia.Interactivity;
 using Avalonia.Media;
 using DotNetpadUI.Shared;
 using Engine.Models;
-using Engine.Services;
 using Engine.ViewModels;
 using System.Linq;
 

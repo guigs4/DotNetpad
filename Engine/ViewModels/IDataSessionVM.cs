@@ -7,6 +7,7 @@ namespace Engine.ViewModels
     public interface IDataSessionVM : INotifyPropertyChanged
     {
         ObservableCollection<TabModel> OpenTabs { get; set; }
+        
         void AddEmptyTab(int newTabIndex);
         void ChangeTimer(int intervalInMs);
         void Initialize();

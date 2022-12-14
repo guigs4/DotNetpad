@@ -47,10 +47,10 @@
 				<TabItem.Content>
 					<Grid ShowGridLines="True" RowDefinitions="*,*,*,*">
 						<TextBlock Grid.Row="0">Font</TextBlock>
-						<ComboBox Grid.Row="1" Name="fontComboBox">
+						<ComboBox Grid.Row="1" x:Name="FontComboBox" SelectionChanged="OnSelectionChanged_FontComboBox" >
 							<ComboBox.ItemTemplate>
 								<DataTemplate>
-									<TextBlock Text="{Binding Name}" FontFamily="{Binding}"/>
+									<TextBlock Text="{Binding Name}" FontFamily="{Binding}" PointerEnter="OnPointerEnter_FontEntry" />
 								</DataTemplate>
 							</ComboBox.ItemTemplate>
 						</ComboBox>

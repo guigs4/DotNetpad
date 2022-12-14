@@ -5,6 +5,7 @@ using DotNetpadUI.Shared;
 using Engine.Models;
 using Engine.ViewModels;
 using System.Linq;
+using Avalonia.Input;
 
 namespace DotNetpadUI
 {
@@ -25,6 +26,7 @@ namespace DotNetpadUI
             _userPreferencesVM = userPreferencesVM;
             _mainUserPreferences = userPreferencesVM.CurrentUserPreferences;
             _tempUserPreferences = (UserPreferencesModel)_mainUserPreferences.Clone();
+            InitialSetup();
             this.UpdateInterface(_mainUserPreferences);
         }
 
@@ -37,8 +39,7 @@ namespace DotNetpadUI
 
         public void OnClick_Cancel(object sender, RoutedEventArgs e)
         {
-            ((MainWindow)Owner).UpdateInterface(_mainUserPreferences);
-            this.UpdateInterface(_mainUserPreferences);
+            UpdateAllInterfaces(_mainUserPreferences);
             UserPreferencesUI.Close();
         }
 
@@ -46,26 +47,41 @@ namespace DotNetpadUI
         {
             //combobox broken on EndeavourOS Plasma
             //Works on XFCE but it's very very slow 
-            var fontComboBox = this.Find<ComboBox>("fontComboBox");
+            var fontComboBox = this.Find<ComboBox>("FontComboBox");
             fontComboBox.Items = FontManager.Current.GetInstalledFontFamilyNames(true).Select(x => new FontFamily(x));
-            fontComboBox.SelectedIndex = 0;
+            fontComboBox.SelectedItem = new FontFamily(_tempUserPreferences.Font);
         }
 
         public void OnClick_SetLightTheme(object sender, RoutedEventArgs e)
         {
             _tempUserPreferences.BackgroundColor = "#EBEBEB";
             _tempUserPreferences.ForegroundColor = "#000000";
-            this.UpdateInterface(_tempUserPreferences);
-            ((MainWindow)Owner).UpdateInterface(_tempUserPreferences);
+            UpdateAllInterfaces(_tempUserPreferences);
 
         }
         public void OnClick_SetDarkTheme(object sender, RoutedEventArgs e)
         {
             _tempUserPreferences.BackgroundColor = "#1E1E1E";
             _tempUserPreferences.ForegroundColor = "#FFFFFF";
-            this.UpdateInterface(_tempUserPreferences);
-            ((MainWindow)Owner).UpdateInterface(_tempUserPreferences);
+            UpdateAllInterfaces(_tempUserPreferences);
         }
 
+        private void OnPointerEnter_FontEntry(object? sender, PointerEventArgs e)
+        {
+            _tempUserPreferences.Font = ((TextBlock)sender).Text;
+            UpdateAllInterfaces(_tempUserPreferences);
+        }
+
+        private void OnSelectionChanged_FontComboBox(object? sender, SelectionChangedEventArgs e)
+        {
+            _tempUserPreferences.Font = ((ComboBox)sender).SelectedItem.ToString();
+            UpdateAllInterfaces(_tempUserPreferences);
+        }
+
+        private void UpdateAllInterfaces(UserPreferencesModel preferences)
+        {
+            this.UpdateInterface(preferences);
+            ((MainWindow)Owner)?.UpdateInterface(preferences);
+        }
     }
 }

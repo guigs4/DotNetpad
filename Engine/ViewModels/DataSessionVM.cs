@@ -17,7 +17,6 @@ namespace Engine.ViewModels
 
 		public void Initialize() //Maybe move into the ctor
 		{
-			DiskIOService.CreateDefaultDirectories();
 			LoadTabsFromDisk();
 			InitializeTimer(10000);
 			this.RaisePropertyChanged();

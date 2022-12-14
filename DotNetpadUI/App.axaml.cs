@@ -1,5 +1,6 @@
 using Avalonia;
 using Avalonia.Markup.Xaml;
+using Engine.Services;
 using Engine.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -14,6 +15,7 @@ namespace DotNetpadUI
         {
             AppHost = Host.CreateDefaultBuilder().ConfigureServices((hostContext, services) =>
             {
+                DiskIOService.CreateDefaultDirectories();
                 services.AddSingleton<MainWindow>(); //TRANSIENT
                 services.AddSingleton<IDataSessionVM, DataSessionVM>(); //TRANSIENT
                 services.AddSingleton<IUserPreferencesVM, UserPreferencesVM>();

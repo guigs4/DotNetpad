@@ -22,5 +22,4 @@ Experimental Notepad-like software, with Tabs and Autosaving support.
  * Change/Improve curent data saving implementation.
 
 ### Known Bugs
- * Will crash if it doesn't find the config directory
  * Will fail to find installed fonts on linux

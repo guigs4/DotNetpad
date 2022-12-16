@@ -12,6 +12,39 @@
 		WindowStartupLocation="CenterOwner"
 		Name="UserPreferencesUI"
 		>
+	<Window.Styles>
+		<Style Selector=":is(TemplatedControl)">
+			<Setter Property="Background" Value="{Binding #UserPreferencesUI.Background}"/>
+			<Setter Property="Foreground" Value="{Binding #UserPreferencesUI.Foreground}"/>
+		</Style>
+		<Style Selector="TextBox:disabled /template/ Border#PART_BorderElement">
+			<Setter Property="BorderBrush" Value="#0078d7" />
+			<Setter Property="Background" Value="Transparent" />
+		</Style>
+		<Style Selector="TextBox:pointerover /template/ Border#PART_BorderElement">
+			<Setter Property="BorderBrush" Value="#0078d7" />
+			<Setter Property="Background" Value="Transparent" />
+		</Style>
+		<Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
+			<Setter Property="BorderBrush" Value="#0078d7" />
+			<Setter Property="Background" Value="Transparent" />
+			<Setter Property="BorderThickness" Value="0, 0, 0, 0"/>
+		</Style>
+		<Style Selector="TabItem">
+			<Setter Property="FontSize" Value="16"/>
+		</Style>
+		<Style Selector="TabItem:isSelected">
+			<Setter Property="Foreground" Value="{Binding #UserPreferencesUI.Foreground}"/>
+		</Style>
+		<Style Selector="TextBlock">
+			<Setter Property="Background" Value="{Binding #UserPreferencesUI.Background}"/>
+			<Setter Property="Foreground" Value="{Binding #UserPreferencesUI.Foreground}"/>
+		</Style>
+		<Style Selector="Button:isPointerOver">
+			<Setter Property="Foreground" Value="{Binding #UserPreferencesUI.Foreground}"/>
+		</Style>
+	</Window.Styles>
+
 	<Canvas Name="MyCanvas" Width="{Binding $parent.Width}" Height="{Binding $parent.Height}">
 		<TabControl Margin="0" Padding="0,0,0,35" BorderThickness="1" BorderBrush="Black" Width="{Binding #MyCanvas.Width}"
 					Height="{Binding #MyCanvas.Height}" >

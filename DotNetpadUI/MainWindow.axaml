@@ -37,6 +37,10 @@
 		<Style Selector="TabItem:isSelected">
 			<Setter Property="Foreground" Value="{Binding #MainUI.Foreground}"/>
 		</Style>
+		<Style Selector="TextBlock">
+			<Setter Property="Background" Value="{Binding #MainUI.Background}"/>
+			<Setter Property="Foreground" Value="{Binding #MainUI.Foreground}"/>
+		</Style>
 	</Window.Styles>
 	
 	<TabControl Name="TabControl" Items="{Binding OpenTabs}" >

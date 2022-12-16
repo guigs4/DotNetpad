@@ -94,13 +94,13 @@
 			</TabItem>
 			<TabItem>
 				<TabItem.Header>
-					<TextBlock>Cache</TextBlock>
+					<TextBlock>Data</TextBlock>
 				</TabItem.Header>
 				<TabItem.Content>
 					<Grid ShowGridLines="True" RowDefinitions="*,*,*,*" ColumnDefinitions="*,*,*">
-						<TextBlock Grid.Row="0">Cache Path</TextBlock>
+						<TextBlock Grid.Row="0">Data Path</TextBlock>
 						<TextBox Grid.Row="1" Grid.ColumnSpan="3" AcceptsReturn="False" AcceptsTab="False" Watermark="Path" ></TextBox>
-						<TextBlock Grid.Row="2">Cache Interval</TextBlock>
+						<TextBlock Grid.Row="2">Data Interval</TextBlock>
 						<NumericUpDown Grid.Row="3" Value="0" Increment="1" Minimum="0" ShowButtonSpinner="False"/>
 						<NumericUpDown Grid.Row="3" Grid.Column="1" Value="0" Increment="1" Minimum="0" Maximum="59"
 									   ShowButtonSpinner="False"/>

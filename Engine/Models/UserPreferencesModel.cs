@@ -14,7 +14,7 @@ namespace Engine.Models
                 return (SaveIntervalInMinutes * 60 + SaveIntervalInSeconds) * 1000;
             }
         }
-        public string? CachePath { get; set; }
+        public string? DataPath { get; set; }
         public string? Font { get; set; }
         public int FontSize { get; set; }
         public string? ForegroundColor { get; set; }

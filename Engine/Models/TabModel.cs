@@ -1,4 +1,6 @@
-﻿namespace Engine.Models
+﻿using System.Text.Json.Serialization;
+
+namespace Engine.Models
 {
     public class TabModel
     {
@@ -21,6 +23,14 @@
             Header = $"New Tab";
             Content = "";
             IsInternal = true;
+        }
+
+        [JsonConstructor]
+        public TabModel(int id, string header, string content)
+        {
+            Id = id;
+            Header = header;
+            Content = content;
         }
     }
 }

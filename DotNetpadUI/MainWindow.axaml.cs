@@ -26,7 +26,7 @@ namespace DotNetpadUI
             this.UpdateInterface(_userPreferences.CurrentUserPreferences);
         }
 
-        public void OnClick_SaveToCache(object sender, RoutedEventArgs e)
+        public void OnClick_SaveToData(object sender, RoutedEventArgs e)
         {
             _dataSession.SaveAllTabs();
         }

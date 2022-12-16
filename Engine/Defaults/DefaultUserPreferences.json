@@ -1,7 +1,7 @@
 ﻿{
 	"SaveIntervalInMinutes": 10,
 	"SaveIntervalInSeconds": 0,
-	"CachePath": "cache/",
+	"DataPath": "data/",
 	"Font": "Arial",
 	"FontSize": 16,
 	"ForegroundColor": "#000000",

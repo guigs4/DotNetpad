@@ -2,6 +2,7 @@
 using Engine.Services;
 using ReactiveUI;
 using System.Collections.ObjectModel;
+using System.Text.Json;
 
 namespace Engine.ViewModels
 {
@@ -19,7 +20,7 @@ namespace Engine.ViewModels
 		public void Initialize() //Maybe move into the ctor
 		{
 			LoadTabsFromDisk();
-			InitializeTimer(10000);
+			InitializeTimer(60000);
 			this.RaisePropertyChanged();
 		}
 
@@ -37,12 +38,6 @@ namespace Engine.ViewModels
 		public void SaveAllTabs()
 		{
 			TabDataIOService.SaveTabData(DATA_PATH, OpenTabs);
-			// int id = 0;
-			// foreach (var tab in OpenTabs.Where(t => t.IsInternal))
-			// {
-			// 	TabDataIOService.SaveTextBoxData(id, tab.Content);
-			// 	id++;
-			// }
 		}
 
 		public void ReorderTabIndex()
@@ -60,29 +55,20 @@ namespace Engine.ViewModels
 
 		public void LoadTabsFromDisk()
 		{
-			int id = 0;
-
-			string[] files = DiskIOService.GetAllExistingDataFiles();
-
-			if (!files.Any())
+			if (!File.Exists(DATA_PATH))
 			{
 				AddEmptyTab(0);
 				return;
 			}
 
-			foreach (string file in files)
-			{
-				string content = TabDataIOService.LoadTextBoxData(file);
-
-				OpenTabs.Add(new(id, "Tab", content));
-
-				id++;
-			}
+			var json = File.ReadAllText(DATA_PATH);
+			
+			OpenTabs = JsonSerializer.Deserialize<ObservableCollection<TabModel>>(json)!;
 		}
 
 		public void InitializeTimer(int intervalInMs)
 		{
-			_timer = new Timer(new TimerCallback(TickTimer), null, intervalInMs, intervalInMs);
+			_timer = new Timer(TickTimer, null, intervalInMs, intervalInMs);
 		}
 
 		private void TickTimer(object state)

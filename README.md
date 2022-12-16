@@ -1,4 +1,4 @@
-# DotNetpad
+# .Netpad
 
 Experimental Notepad-like software, with Tabs and Autosaving support.
 
@@ -19,7 +19,8 @@ Experimental Notepad-like software, with Tabs and Autosaving support.
 
 ### TODO
  * Fix Tab Naming 
- * Change/Improve curent data saving implementation.
+ * ~~Change/Improve current data saving implementation.~~ Done
 
 ### Known Bugs
- * Will fail to find installed fonts on linux
+ * ~~Will fail to find installed fonts on linux.~~ Fixed
+ * Font dropdown will be blank if there's an invalid entry for int in preferences.json

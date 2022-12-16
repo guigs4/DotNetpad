@@ -4,6 +4,7 @@
     <option name="projectPerEditor">
       <map>
         <entry key="DotNetpadUI/MainWindow.axaml" value="DotNetpadUI/DotNetpadUI.csproj" />
+        <entry key="DotNetpadUI/UserPreferences.axaml" value="DotNetpadUI/DotNetpadUI.csproj" />
       </map>
     </option>
   </component>

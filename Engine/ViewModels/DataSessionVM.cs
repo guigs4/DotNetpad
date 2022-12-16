@@ -8,6 +8,7 @@ namespace Engine.ViewModels
 	public class DataSessionVM : ReactiveObject, IDataSessionVM
 	{
 		private Timer _timer;
+		private const string DATA_PATH = "data/data.json";
 		public ObservableCollection<TabModel> OpenTabs { get; set; } //TODO: Move to Factory
 
 		public DataSessionVM()
@@ -35,12 +36,13 @@ namespace Engine.ViewModels
 
 		public void SaveAllTabs()
 		{
-			int id = 0;
-			foreach (var tab in OpenTabs.Where(t => t.IsInternal))
-			{
-				TabDataIOService.SaveTextBoxData(id, tab.Content);
-				id++;
-			}
+			TabDataIOService.SaveTabData(DATA_PATH, OpenTabs);
+			// int id = 0;
+			// foreach (var tab in OpenTabs.Where(t => t.IsInternal))
+			// {
+			// 	TabDataIOService.SaveTextBoxData(id, tab.Content);
+			// 	id++;
+			// }
 		}
 
 		public void ReorderTabIndex()
@@ -60,7 +62,7 @@ namespace Engine.ViewModels
 		{
 			int id = 0;
 
-			string[] files = DiskIOService.GetAllExistingCacheFiles();
+			string[] files = DiskIOService.GetAllExistingDataFiles();
 
 			if (!files.Any())
 			{

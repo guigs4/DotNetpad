@@ -1,6 +1,6 @@
 ﻿namespace TestEngine
 {
-    public class CacheServicesTests
+    public class DataServicesTests
     {
         public void SaveTextBoxData_ShouldBeSuccessful()
         {

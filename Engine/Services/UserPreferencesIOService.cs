@@ -7,7 +7,7 @@ namespace Engine.Services
 {
     public static class UserPreferencesIOService
     {
-        private const string _preferencesPath = "config/preferences.json";
+        private const string _preferencesPath = "data/preferences.json";
         public static void SavePreferences(UserPreferencesModel userPreferences)
         {
             string jsonString = SerializePreferencesObject(userPreferences);
@@ -21,7 +21,7 @@ namespace Engine.Services
 
         public static UserPreferencesModel DeserializePreferencesObject()
         {
-            string jsonString = DiskIOService.LoadStringFromFile("config/preferences.json");
+            string jsonString = DiskIOService.LoadStringFromFile(_preferencesPath);
             return JsonSerializer.Deserialize<UserPreferencesModel>(jsonString)!;
         }
 
@@ -33,7 +33,7 @@ namespace Engine.Services
                 var resourceName = assembly.GetManifestResourceNames().Single(str => str.EndsWith("DefaultUserPreferences.json"));
                 using Stream stream = assembly.GetManifestResourceStream(resourceName)!;
                 using StreamReader reader = new(stream!);
-                DiskIOService.SaveStringToFile("config/preferences.json", reader.ReadToEnd());
+                DiskIOService.SaveStringToFile(_preferencesPath, reader.ReadToEnd());
             }
         }
     }

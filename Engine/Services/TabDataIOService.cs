@@ -15,19 +15,15 @@ namespace Engine.Services
 
         public static void SaveTextBoxData(string path, string content)
         {
-            DiskIOService.SaveStringToFile(path, content);
-        }
-
-        public static void SaveTextBoxData(int id, string content)
-        {
-            DiskIOService.SaveStringToFile($"data/data {id}.txt", content);
+            SaveStringToFile(path, content);
         }
 
         public static string LoadTextBoxData(string path)
         {
+            //No idea why I did it like this, seems redundant
             if (File.Exists(path))
             {
-                return DiskIOService.LoadStringFromFile(path);
+                return LoadStringFromFile(path);
             }
             else
             {

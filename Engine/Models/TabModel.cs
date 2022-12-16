@@ -4,8 +4,8 @@
     {
         public int Id { get; set; }
         public string? Header { get; set; }
-        public string? Content { get; set; } = "";
-        public bool IsInternal { get; set; } = true;
+        public string? Content { get; set; }
+        public bool IsInternal { get; set; }
 
         public TabModel(int index, string header, string content = "", bool isInternal = true)
         {

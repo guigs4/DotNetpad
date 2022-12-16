@@ -29,7 +29,7 @@ namespace Engine.ViewModels
 
 		public void RemoveTab(int id)
 		{
-			var tabToRemove = OpenTabs.Where(tab => tab.Id == id).First();
+			var tabToRemove = OpenTabs.First(tab => tab.Id == id);
 			OpenTabs.Remove(tabToRemove);
 		}
 

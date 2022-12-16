@@ -47,12 +47,14 @@ namespace DotNetpadUI
         {
             //combobox broken on EndeavourOS Plasma
             //Works on XFCE but it's very very slow 
+            //Confirmed working on OpenSUSE Tumbleweed Plasma 
+            //Confirmed working on Arch Gnome
             var fontComboBox = this.Find<ComboBox>("FontComboBox");
             fontComboBox.Items = FontManager.Current.GetInstalledFontFamilyNames(true).Select(x => new FontFamily(x));
-            fontComboBox.SelectedItem = new FontFamily(_tempUserPreferences.Font);
+            fontComboBox.SelectedItem = new FontFamily(_tempUserPreferences.Font); //TODO: Check if Font is empty
         }
 
-        public void OnClick_SetLightTheme(object sender, RoutedEventArgs e)
+        public void OnClick_SetLightTheme(object sender, RoutedEventArgs e) //TODO: Create a global OnClick Event u dummy
         {
             _tempUserPreferences.BackgroundColor = "#EBEBEB";
             _tempUserPreferences.ForegroundColor = "#000000";

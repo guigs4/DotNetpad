@@ -45,29 +45,37 @@ namespace DotNetpadUI
 
         public void InitialSetup()
         {
-            //combobox broken on EndeavourOS Plasma
-            //Works on XFCE but it's very very slow 
-            //Confirmed working on OpenSUSE Tumbleweed Plasma 
-            //Confirmed working on Arch Gnome
             var fontComboBox = this.Find<ComboBox>("FontComboBox");
             fontComboBox.Items = FontManager.Current.GetInstalledFontFamilyNames(true).Select(x => new FontFamily(x));
             fontComboBox.SelectedItem = new FontFamily(_tempUserPreferences.Font); //TODO: Check if Font is empty
         }
 
-        public void OnClick_SetLightTheme(object sender, RoutedEventArgs e) //TODO: Create a global OnClick Event u dummy
+        public void OnClick_SetTheme(object sender, RoutedEventArgs e)
         {
-            _tempUserPreferences.BackgroundColor = "#EBEBEB";
-            _tempUserPreferences.ForegroundColor = "#000000";
+            if (sender is not Button) return;
+            switch (((Button)sender).Name)
+            {
+                    case "Light":
+                        _tempUserPreferences.BackgroundColor = "#FCFCDC";
+                        _tempUserPreferences.ForegroundColor = "#000000";
+                        break;
+                    case "LightHC":
+                        _tempUserPreferences.BackgroundColor = "#ffffff";
+                        _tempUserPreferences.ForegroundColor = "#000000";
+                        break;
+                    case "Dark":
+                        _tempUserPreferences.BackgroundColor = "#1E1E1E";
+                        _tempUserPreferences.ForegroundColor = "#FFFFFF";
+                        break;
+                    case "DarkHC":
+                        _tempUserPreferences.BackgroundColor = "#000000";
+                        _tempUserPreferences.ForegroundColor = "#FFFFFF";
+                        break;
+            }
+            
             UpdateAllInterfaces(_tempUserPreferences);
-
         }
-        public void OnClick_SetDarkTheme(object sender, RoutedEventArgs e)
-        {
-            _tempUserPreferences.BackgroundColor = "#1E1E1E";
-            _tempUserPreferences.ForegroundColor = "#FFFFFF";
-            UpdateAllInterfaces(_tempUserPreferences);
-        }
-
+        
         private void OnPointerEnter_FontEntry(object? sender, PointerEventArgs e)
         {
             _tempUserPreferences.Font = ((TextBlock)sender).Text;

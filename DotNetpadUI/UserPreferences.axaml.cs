@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Media;
@@ -47,7 +48,7 @@ namespace DotNetpadUI
         {
             var fontComboBox = this.Find<ComboBox>("FontComboBox");
             fontComboBox.Items = FontManager.Current.GetInstalledFontFamilyNames(true).Select(x => new FontFamily(x));
-            fontComboBox.SelectedItem = new FontFamily(_tempUserPreferences.Font); //TODO: Check if Font is empty
+            fontComboBox.SelectedItem = SetFontComboBoxValue(_tempUserPreferences.Font, fontComboBox.Items.Cast<FontFamily>());
         }
 
         public void OnClick_SetTheme(object sender, RoutedEventArgs e)
@@ -86,6 +87,13 @@ namespace DotNetpadUI
         {
             _tempUserPreferences.Font = ((ComboBox)sender).SelectedItem.ToString();
             UpdateAllInterfaces(_tempUserPreferences);
+        }
+
+        private object SetFontComboBoxValue(string fontName, IEnumerable<FontFamily> fontEnumerable)
+        {
+            if (string.IsNullOrEmpty(_tempUserPreferences.Font)) return fontEnumerable.FirstOrDefault();
+            var output = new FontFamily(_tempUserPreferences.Font);
+            return fontEnumerable.Contains(output) ? output : fontEnumerable.FirstOrDefault();
         }
 
         private void UpdateAllInterfaces(UserPreferencesModel preferences)

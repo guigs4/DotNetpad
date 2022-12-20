@@ -23,4 +23,5 @@ Experimental Notepad-like software, with Tabs and Autosaving support.
 
 ### Known Bugs
  * ~~Will fail to find installed fonts on linux.~~ Fixed
- * Font dropdown will be blank if there's an invalid entry in preferences.json
+ * ~~Font dropdown will be blank if there's an invalid entry in preferences.json~~ Fixed
+ * Will crash when trying to display installed fonts (seems to depend on what fonts are installed)

@@ -52,8 +52,8 @@ namespace DotNetpadUI
 
         public void OnClick_SetTheme(object sender, RoutedEventArgs e)
         {
-            if (sender is not Button) return;
-            switch (((Button)sender).Name)
+            if (sender is not Button button) return;
+            switch (button.Name)
             {
                     case "Light":
                         _tempUserPreferences.BackgroundColor = "#FCFCDC";
